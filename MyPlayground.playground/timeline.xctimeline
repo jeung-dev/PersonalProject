@@ -3,7 +3,13 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/me/Desktop/Personal/MyPlayground.playground#CharacterRangeLen=8&amp;CharacterRangeLoc=2481&amp;EndingColumnNumber=13&amp;EndingLineNumber=85&amp;StartingColumnNumber=5&amp;StartingLineNumber=85&amp;Timestamp=654086371.5628999"
+         documentLocation = "file:///Users/me/PersonalProject/MyPlayground.playground#CharacterRangeLen=8&amp;CharacterRangeLoc=7579&amp;EndingColumnNumber=15&amp;EndingLineNumber=271&amp;StartingColumnNumber=7&amp;StartingLineNumber=271&amp;Timestamp=654089989.5033621"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/me/PersonalProject/MyPlayground.playground#CharacterRangeLen=10&amp;CharacterRangeLoc=8303&amp;EndingColumnNumber=15&amp;EndingLineNumber=291&amp;StartingColumnNumber=5&amp;StartingLineNumber=291&amp;Timestamp=654089989.5035551"
+         lockedSize = "{310.95625000000001, 142}"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
