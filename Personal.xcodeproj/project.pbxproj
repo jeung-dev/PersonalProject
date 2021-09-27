@@ -17,6 +17,10 @@
 		8C6E791B2700C636002A01C2 /* SubInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E791A2700C636002A01C2 /* SubInteractor.swift */; };
 		8C6E791D2700C640002A01C2 /* SubPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E791C2700C640002A01C2 /* SubPresenter.swift */; };
 		8C6E791F2700C64F002A01C2 /* SubRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E791E2700C64F002A01C2 /* SubRouter.swift */; };
+		8C6E79222700DFE7002A01C2 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E79212700DFE7002A01C2 /* IntroViewController.swift */; };
+		8C6E79242700E02D002A01C2 /* IntroInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E79232700E02D002A01C2 /* IntroInteractor.swift */; };
+		8C6E79262700E03B002A01C2 /* IntroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E79252700E03B002A01C2 /* IntroPresenter.swift */; };
+		8C6E79282700E049002A01C2 /* IntroRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E79272700E048002A01C2 /* IntroRouter.swift */; };
 		8CBA62D526FC8D6C00EFD030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA62D426FC8D6C00EFD030 /* AppDelegate.swift */; };
 		8CBA62D726FC8D6C00EFD030 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA62D626FC8D6C00EFD030 /* SceneDelegate.swift */; };
 		8CBA62D926FC8D6C00EFD030 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA62D826FC8D6C00EFD030 /* HomeViewController.swift */; };
@@ -26,6 +30,7 @@
 		8CBA62EC26FC8D6D00EFD030 /* PersonalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA62EB26FC8D6D00EFD030 /* PersonalTests.swift */; };
 		8CBA62F726FC8D6D00EFD030 /* PersonalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA62F626FC8D6D00EFD030 /* PersonalUITests.swift */; };
 		8CD96B2C2701BBA8000E978C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD96B2B2701BBA8000E978C /* Logger.swift */; };
+		8CD96B322701CD35000E978C /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD96B312701CD35000E978C /* NavigationViewController.swift */; };
 		B654A05F459E69509A70A6C3 /* Pods_Personal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41E71E1F13DBF54664DB6DD /* Pods_Personal.framework */; };
 		F8DF150B16282690BB9B5F45 /* Pods_PersonalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +65,10 @@
 		8C6E791A2700C636002A01C2 /* SubInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubInteractor.swift; sourceTree = "<group>"; };
 		8C6E791C2700C640002A01C2 /* SubPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubPresenter.swift; sourceTree = "<group>"; };
 		8C6E791E2700C64F002A01C2 /* SubRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRouter.swift; sourceTree = "<group>"; };
+		8C6E79212700DFE7002A01C2 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		8C6E79232700E02D002A01C2 /* IntroInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroInteractor.swift; sourceTree = "<group>"; };
+		8C6E79252700E03B002A01C2 /* IntroPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPresenter.swift; sourceTree = "<group>"; };
+		8C6E79272700E048002A01C2 /* IntroRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroRouter.swift; sourceTree = "<group>"; };
 		8CBA62D126FC8D6C00EFD030 /* Personal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Personal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBA62D426FC8D6C00EFD030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CBA62D626FC8D6C00EFD030 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +84,7 @@
 		8CBA62F626FC8D6D00EFD030 /* PersonalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalUITests.swift; sourceTree = "<group>"; };
 		8CBA62F826FC8D6D00EFD030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD96B2B2701BBA8000E978C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		8CD96B312701CD35000E978C /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC9514113CDE319F57F4CEB /* Pods-Personal-PersonalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal-PersonalUITests.release.xcconfig"; path = "Target Support Files/Pods-Personal-PersonalUITests/Pods-Personal-PersonalUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D8D9362BE4D8BDE74B874CC5 /* Pods-Personal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal.debug.xcconfig"; path = "Target Support Files/Pods-Personal/Pods-Personal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,8 +125,10 @@
 			isa = PBXGroup;
 			children = (
 				8C6E79152700C228002A01C2 /* BaseViewController.swift */,
+				8C6E79202700DFCA002A01C2 /* Intro */,
 				8C6E790C2700C115002A01C2 /* Home */,
 				8C6E79172700C4FE002A01C2 /* Sub */,
+				8CD96B312701CD35000E978C /* NavigationViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -142,6 +154,17 @@
 				8C6E791E2700C64F002A01C2 /* SubRouter.swift */,
 			);
 			path = Sub;
+			sourceTree = "<group>";
+		};
+		8C6E79202700DFCA002A01C2 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				8C6E79212700DFE7002A01C2 /* IntroViewController.swift */,
+				8C6E79232700E02D002A01C2 /* IntroInteractor.swift */,
+				8C6E79252700E03B002A01C2 /* IntroPresenter.swift */,
+				8C6E79272700E048002A01C2 /* IntroRouter.swift */,
+			);
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		8CBA62C826FC8D6C00EFD030 = {
@@ -469,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CBA62D926FC8D6C00EFD030 /* HomeViewController.swift in Sources */,
+				8C6E79222700DFE7002A01C2 /* IntroViewController.swift in Sources */,
 				8C6E791B2700C636002A01C2 /* SubInteractor.swift in Sources */,
 				8CBA62D526FC8D6C00EFD030 /* AppDelegate.swift in Sources */,
 				8C6E79142700C179002A01C2 /* HomeRouter.swift in Sources */,
@@ -477,10 +501,14 @@
 				8C6E79122700C162002A01C2 /* HomePresenter.swift in Sources */,
 				8CD96B2C2701BBA8000E978C /* Logger.swift in Sources */,
 				8C6E79162700C228002A01C2 /* BaseViewController.swift in Sources */,
+				8C6E79282700E049002A01C2 /* IntroRouter.swift in Sources */,
+				8C6E79262700E03B002A01C2 /* IntroPresenter.swift in Sources */,
+				8CD96B322701CD35000E978C /* NavigationViewController.swift in Sources */,
 				8C6E791D2700C640002A01C2 /* SubPresenter.swift in Sources */,
 				8C6E79192700C513002A01C2 /* SubViewController.swift in Sources */,
 				8C6E790E2700C13C002A01C2 /* HomeInteractor.swift in Sources */,
 				8CBA62D726FC8D6C00EFD030 /* SceneDelegate.swift in Sources */,
+				8C6E79242700E02D002A01C2 /* IntroInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
