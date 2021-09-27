@@ -23,7 +23,6 @@ class IntroViewController: BaseViewController, IntroDisplayLogic {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         setup()
         
     }
@@ -31,9 +30,7 @@ class IntroViewController: BaseViewController, IntroDisplayLogic {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         preprocessing {
-            
-            router!.routeToHome(segue: nil)
-            
+            router!.routeToHome()
         }
         
     }
