@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.4.3)
+  - Alamofire (5.4.4)
   - AlamofireImage (4.2.0):
     - Alamofire (~> 5.4)
   - KakaoSDK (2.8.0):
@@ -61,7 +61,7 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   AlamofireImage: 34a2d90b0e5fe6a5605f85ae4b7b01e784c60192
   KakaoSDK: 31885e28f795ea568ff3537e5ee2cb44a9906dd0
   KakaoSDKAuth: 614d5c1b2c52f0e25436765c52bfb27b522bf116
