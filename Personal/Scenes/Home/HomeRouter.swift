@@ -26,7 +26,8 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     
     func routeToSub(segue: UIStoryboardSegue?) {
         if let _segue = segue {
-            
+            //데이터 넘기는 작업
+            print("routeToSub 메서드에 들어옴")
         } else {
             let index = viewController!.navigationController!.viewControllers.count - 2
             let destinationVC = viewController?.navigationController?.viewControllers[index] as! SubViewController

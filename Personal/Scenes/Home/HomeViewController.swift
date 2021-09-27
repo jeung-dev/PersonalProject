@@ -41,6 +41,10 @@ class HomeViewController: BaseViewController, HomeDisplayLogic {
         presenter.viewController = viewController
         router.viewController = viewController
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        router!.routeToSub(segue: segue)
+    }
 
 }
 
