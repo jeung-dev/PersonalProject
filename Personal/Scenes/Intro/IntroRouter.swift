@@ -49,8 +49,9 @@ class IntroRouter: NSObject, IntroRoutingLogic, IntroDataPassing {
                         Logger.d("keyWindow를 만들지 못함")
                         return
                     }
-            
             keyWindow.rootViewController = navigationVC
+            
+            
         }
     }
     
