@@ -17,9 +17,9 @@ class HomeViewController: BaseViewController, HomeDisplayLogic {
     @IBOutlet weak var tableView: UITableView!
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
-    let category: [String] = ["Custom PopupView",
-                              "KakaoLogin",
-                              "get restfulAPI DATA"]
+    let category: [Home.Category] = [Home.Category.KakaoLogin,
+                              Home.Category.getRestfulApiDATA,
+                              Home.Category.CustomPopupView]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,7 @@ class HomeViewController: BaseViewController, HomeDisplayLogic {
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
+        router.dataStore = interactor
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,8 +57,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? HomeTableViewCell else { return UITableViewCell()}
-        cell.categoryLabel.text = self.category[indexPath.row]
+        cell.categoryLabel.text = self.category[indexPath.row].rawValue
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        //서브뷰에 해당 카테고리를 넘겨주기 위한 작업 (추후 router에서 쓰임)
+        let category = category[indexPath.row]
+        interactor?.setCategory(category)
+        
+        return indexPath
     }
     
     

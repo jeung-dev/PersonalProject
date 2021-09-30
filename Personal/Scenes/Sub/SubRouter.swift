@@ -16,8 +16,13 @@ import UIKit
  # 목표 View Controller로 전달해야하는 data를 가지고 있는 프로토콜이다.
  */
 protocol SubDataPassing {
-    
+    var dataStore: SubDataStore? { get }
 }
 class SubRouter: NSObject, SubRoutingLogic, SubDataPassing {
+    var dataStore: SubDataStore?
     weak var viewController: SubViewController?
+    
+    func removeIndicator() {
+        viewController!.removeLoadingIndicator()
+    }
 }
