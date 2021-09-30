@@ -9,8 +9,8 @@ import UIKit
 
 class BaseViewController: UIViewController {
     let loadingIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .gray)
-        indicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = .medium
         return indicator
     }()
     
@@ -19,7 +19,7 @@ class BaseViewController: UIViewController {
         loadingIndicator.center = self.view.center
         self.view.addSubview(loadingIndicator)
         loadingIndicator.bringSubviewToFront(self.view)
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         loadingIndicator.isHidden = true
         
         Logger.d("로딩 인디케이터 셋업 완료")
