@@ -11,7 +11,7 @@ protocol SubDisplayLogic: AnyObject {
     
 }
 
-class SubViewController: BaseViewController, SubDisplayLogic {
+class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayable {
     
     //MARK: Properties
     var interactor: SubBusinessLogic?
@@ -34,9 +34,14 @@ class SubViewController: BaseViewController, SubDisplayLogic {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setLoadingIndicator()
+        
         
         dividedFromViewName()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        showSkeleton()
     }
     
     func setup() {
@@ -54,7 +59,6 @@ class SubViewController: BaseViewController, SubDisplayLogic {
     }
     
     func dividedFromViewName() {
-        startLoadingIndicator()
         guard let viewName = router?.dataStore?.category else {
             Logger.d("Sub View Name이 없습니다.")
             return
@@ -75,23 +79,34 @@ class SubViewController: BaseViewController, SubDisplayLogic {
 extension SubViewController {
     
     func getContentsViewInPopup() {
+        
+        
+        //컨텐츠뷰(in popoupview)
         guard let contentsInPopup = ContentsInPopup.loadViewFromNib() else { return }
         contentsInPopup.frame.size.width = self.view.frame.width
-        contentsInPopup.setImsiView {
-            self.view.addSubview(contentsInPopup)
-            let imageView = UIImageView()
-            let urlString = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8uyx3Z85xVn1ie0BCR3aY9U2gs4BbK1kAXg&usqp=CAU"
-            imageView.loadImageWithURLString(urlString, cacheKey: urlString, filter: nil)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                //이 동안 화면이 하얗게 나옴..
-                self.stopLoadingIndicator()
-                Logger.i(imageView.image)
-                contentsInPopup.setImage(imageView.image ?? UIImage.getPlaceholder(size: CGSize(width: self.view.frame.width, height: 300))) {
-                    contentsInPopup.removeImsiView()
-                }
-//                contentsInPopup.setImage(imageView.image ?? UIImage.getPlaceholder(size: CGSize(width: self.view.frame.width, height: 300)))
-//                contentsInPopup.layoutIfNeeded()
-            }
+        contentsInPopup.setImageView()  //스켈레톤을 보이게 하기 위해 꼭 이미지를 띄워야 함
+        self.view.addSubview(contentsInPopup)
+        
+        //이미지가 로드되는 동안 흰 화면이 보이는 문제로
+        //스켈레톤 화면을 띄워서 해결함.
+        //스켈레톤 화면 위에 로딩 인디케이터도 띄움
+        //인디케이터와 스켈레톤 Start
+        showSkeleton()
+        setLoadingIndicator()
+        self.startLoadingIndicator()
+        
+        //이미지를 url에서 불러옴
+        //이미지가 없으면 기본이미지를 보여줌
+        let imageView = UIImageView()
+        let urlString = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8uyx3Z85xVn1ie0BCR3aY9U2gs4BbK1kAXg&usqp=CAU"
+        imageView.loadImageWithURLString(urlString, cacheKey: urlString, filter: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            contentsInPopup.setImage(imageView.image ?? UIImage.getPlaceholder(size: CGSize(width: self.view.frame.width, height: 300)))
+            
+            //인디케이터와 스켈레톤 Stop
+            self.stopLoadingIndicator()
+            self.hideSkeleton()
+            
         }
     }
 }
