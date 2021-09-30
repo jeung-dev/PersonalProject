@@ -14,6 +14,7 @@
 		8C4CC97227040FDB00D4E4EB /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CC97127040FDB00D4E4EB /* HomeModels.swift */; };
 		8C4CC97727042F9B00D4E4EB /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CC97627042F9B00D4E4EB /* ImageViewExtension.swift */; };
 		8C4CC9792705547800D4E4EB /* SkeletonDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CC9782705547800D4E4EB /* SkeletonDisplayable.swift */; };
+		8C4CC97D270602FE00D4E4EB /* ScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CC97C270602FE00D4E4EB /* ScrollViewExtension.swift */; };
 		8C6E790B2700BFD1002A01C2 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E790A2700BFD1002A01C2 /* HomeTableViewCell.swift */; };
 		8C6E790E2700C13C002A01C2 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E790D2700C13C002A01C2 /* HomeInteractor.swift */; };
 		8C6E79122700C162002A01C2 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E79112700C162002A01C2 /* HomePresenter.swift */; };
@@ -68,6 +69,7 @@
 		8C4CC97127040FDB00D4E4EB /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		8C4CC97627042F9B00D4E4EB /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		8C4CC9782705547800D4E4EB /* SkeletonDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonDisplayable.swift; sourceTree = "<group>"; };
+		8C4CC97C270602FE00D4E4EB /* ScrollViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewExtension.swift; sourceTree = "<group>"; };
 		8C6E790A2700BFD1002A01C2 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		8C6E790D2700C13C002A01C2 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		8C6E79112700C162002A01C2 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				8C4CC97627042F9B00D4E4EB /* ImageViewExtension.swift */,
+				8C4CC97C270602FE00D4E4EB /* ScrollViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				8C6E79262700E03B002A01C2 /* IntroPresenter.swift in Sources */,
 				8CD96B322701CD35000E978C /* NavigationViewController.swift in Sources */,
 				8C6E791D2700C640002A01C2 /* SubPresenter.swift in Sources */,
+				8C4CC97D270602FE00D4E4EB /* ScrollViewExtension.swift in Sources */,
 				8C4CC96F27040F4800D4E4EB /* SubModels.swift in Sources */,
 				8C6E79192700C513002A01C2 /* SubViewController.swift in Sources */,
 				8C6E790E2700C13C002A01C2 /* HomeInteractor.swift in Sources */,
