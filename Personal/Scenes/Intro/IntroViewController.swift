@@ -67,6 +67,6 @@ class IntroViewController: BaseViewController, IntroDisplayLogic {
 
 extension IntroViewController: DynamicTypeable {
     func setLabelFontStyle() {
-        self.setLabelFontStyles([self.literaryPropertyLabel], fontStyle: .footnote)
+        self.setLabelFontStyles([self.literaryPropertyLabel:.footnote])
     }
 }

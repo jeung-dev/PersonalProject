@@ -70,18 +70,24 @@ class BaseViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func setLabelFontStyles(_ labels: [UILabel], fontStyle: UIFont.TextStyle) {
-        for label in labels {
-            label.font = UIFont.preferredFont(forTextStyle: fontStyle)
-            label.minimumScaleFactor = 0.5
-            label.adjustsFontForContentSizeCategory = true
-        }
-    }
-    
-    func setLabelFontStyles(_ labelAndStyles: [UILabel:UIFont.TextStyle]) {
+    func setLabelFontStyles(_ labelAndStyles: [UILabel : UIFont.TextStyle]) {
         for labelAndStyle in labelAndStyles {
             labelAndStyle.key.font = UIFont.preferredFont(forTextStyle: labelAndStyle.value)
             labelAndStyle.key.adjustsFontForContentSizeCategory = true
+        }
+    }
+    
+    func setTextFieldFontStyles(_ textFieldAndStyles: [UITextField : UIFont.TextStyle]) {
+        for textFieldAndStyle in textFieldAndStyles {
+            textFieldAndStyle.key.font = UIFont.preferredFont(forTextStyle: textFieldAndStyle.value)
+            textFieldAndStyle.key.adjustsFontForContentSizeCategory = true
+        }
+    }
+    
+    func setButtonFontStyles(_ buttonAndStyles: [UIButton : UIFont.TextStyle]) {
+        for buttonAndStyle in buttonAndStyles {
+            buttonAndStyle.key.titleLabel?.font = UIFont.preferredFont(forTextStyle: buttonAndStyle.value)
+            buttonAndStyle.key.titleLabel?.adjustsFontForContentSizeCategory = true
         }
     }
     
