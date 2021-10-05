@@ -7,7 +7,15 @@
 
 import UIKit
 
+// protocol을 이용한 방법
+import Foundation
+@objc protocol DynamicTypeable {
+    func setLabelFontStyle()
+    @objc optional func adjustButtonDynamicType()
+}
+
 class BaseViewController: UIViewController {
+    
     let loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         indicator.style = .medium
@@ -15,14 +23,13 @@ class BaseViewController: UIViewController {
     }()
     
     func setLoadingIndicator() {
-        
         loadingIndicator.center = self.view.center
         self.view.addSubview(loadingIndicator)
         loadingIndicator.bringSubviewToFront(self.view)
 //        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         loadingIndicator.isHidden = true
         
-        Logger.d("로딩 인디케이터 셋업 완료")
+        Logger.i("로딩 인디케이터 셋업 완료")
     }
     
     func startLoadingIndicator() {
@@ -32,7 +39,7 @@ class BaseViewController: UIViewController {
         if false == loadingIndicator.isAnimating {
             loadingIndicator.startAnimating()
         }
-        Logger.d("로딩 인디케이터 스타팅")
+        Logger.i("로딩 인디케이터 스타팅")
     }
     
     func stopLoadingIndicator() {
@@ -43,7 +50,7 @@ class BaseViewController: UIViewController {
         if false == loadingIndicator.isHidden {
             loadingIndicator.isHidden = true
         }
-        Logger.d("로딩 인디케이터 스톱")
+        Logger.i("로딩 인디케이터 스톱")
     }
     
     func removeLoadingIndicator() {
@@ -55,12 +62,27 @@ class BaseViewController: UIViewController {
             loadingIndicator.isHidden = true
         }
         loadingIndicator.removeFromSuperview()
-        Logger.d("로딩 인디케이터 지움")
+        Logger.i("로딩 인디케이터 지움")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    func setLabelFontStyles(_ labels: [UILabel], fontStyle: UIFont.TextStyle) {
+        for label in labels {
+            label.font = UIFont.preferredFont(forTextStyle: fontStyle)
+            label.minimumScaleFactor = 0.5
+            label.adjustsFontForContentSizeCategory = true
+        }
+    }
+    
+    func setLabelFontStyles(_ labelAndStyles: [UILabel:UIFont.TextStyle]) {
+        for labelAndStyle in labelAndStyles {
+            labelAndStyle.key.font = UIFont.preferredFont(forTextStyle: labelAndStyle.value)
+            labelAndStyle.key.adjustsFontForContentSizeCategory = true
+        }
     }
     
 

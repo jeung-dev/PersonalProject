@@ -16,6 +16,7 @@ protocol IntroDisplayLogic: AnyObject {
 class IntroViewController: BaseViewController, IntroDisplayLogic {
     
     //MARK: Properties
+    @IBOutlet weak var literaryPropertyLabel: UILabel! //저작권 표시 라벨
     var interactor: IntroBusinessLogic?
     var router: (NSObjectProtocol & IntroRoutingLogic & IntroDataPassing)?
 
@@ -62,4 +63,10 @@ class IntroViewController: BaseViewController, IntroDisplayLogic {
     }
     */
 
+}
+
+extension IntroViewController: DynamicTypeable {
+    func setLabelFontStyle() {
+        self.setLabelFontStyles([self.literaryPropertyLabel], fontStyle: .footnote)
+    }
 }

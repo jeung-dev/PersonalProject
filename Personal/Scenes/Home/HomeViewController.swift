@@ -72,3 +72,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+//MARK: Accessibility
+extension HomeViewController: DynamicTypeable {
+    func setLabelFontStyle() {
+    }
+}

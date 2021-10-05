@@ -22,3 +22,11 @@ class HomeTableViewCell: UITableViewCell {
     }
 
 }
+
+
+extension HomeTableViewCell: DynamicTypeable {
+    func setLabelFontStyle() {
+        self.categoryLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        self.categoryLabel.adjustsFontForContentSizeCategory = true
+    }
+}

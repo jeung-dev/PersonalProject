@@ -32,15 +32,13 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
             Logger.d("routeToSub 메서드에 들어옴: \(_segue)")
             
             //데이터 넘기는 작업
-            let destinationVC = segue?.destination as! SubViewController
+            let destinationVC = _segue.destination as! SubViewController
             var destinationDS = destinationVC.router!.dataStore!
             passingDataToSub(source: dataStore!, destination: &destinationDS)
             
         } else {
             let index = viewController!.navigationController!.viewControllers.count - 2
             let destinationVC = viewController?.navigationController?.viewControllers[index] as! SubViewController
-            //로딩뷰 멈춰
-            viewController?.stopLoadingIndicator()
             navigateToSub(source: viewController!, destination: destinationVC)
         }
     }

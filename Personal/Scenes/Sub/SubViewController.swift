@@ -58,6 +58,25 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         router.dataStore = interactor
     }
     
+    func getView(width: CGFloat, height: CGFloat, backgroundColor: UIColor) -> UIView{
+        let v = UIView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
+        v.backgroundColor = backgroundColor
+        return v
+    }
+    func getImageView(width: CGFloat, height: CGFloat, backgroundColor: UIColor) -> UIImageView {
+        let imgv = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
+        imgv.backgroundColor = backgroundColor
+        return imgv
+    }
+    func getLabel(text: String, backgroundColor: UIColor, type: UIFont.TextStyle) -> UILabel {
+        let l = UILabel(frame: .zero)
+        l.text = text
+        l.numberOfLines = 0
+        l.backgroundColor = backgroundColor
+        self.setLabelFontStyles([l:type])
+        return l
+    }
+    
     func dividedFromViewName() {
         guard let viewName = router?.dataStore?.category else {
             Logger.d("Sub View Name이 없습니다.")
@@ -69,9 +88,36 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         case .getRestfulApiDATA:
             break
         case .CustomPopupView:
-            getContentsViewInPopup()
+            let view1 = getView(width: 0, height: 400, backgroundColor: .red)
+            let view2 = getView(width: 0, height: 200, backgroundColor: .orange)
+            
+            let imageView1 = getImageView(width: 0, height: 300, backgroundColor: .yellow)
+            let imageView2 = getImageView(width: 0, height: 400, backgroundColor: .green)
+            
+            let label1 = getLabel(text: "고소한 아몬드 후레이크", backgroundColor: .blue, type: .largeTitle)
+            let label2 = getLabel(text: "곰곰 광천 김자반", backgroundColor: .purple, type: .body)
+            
+            let popupData = Popup(title: "공지", views: [view1, view2], imageViews: [imageView1, imageView2], labels: [label1, label2], defaultButton: .quit, addButtons: nil)
+            interactor?.setPopupData(popupData)
+            
+            //self.performSegue(withIdentifier: "toPopup", sender: nil)
+            if let popupViewController = storyboard?.instantiateViewController(identifier: "PopupViewController") {
+                popupViewController.modalPresentationStyle = .overCurrentContext
+                popupViewController.modalTransitionStyle = .crossDissolve
+                present(popupViewController, animated: true)
+            }
             break
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        router?.routeToPopup(segue)
+    }
+    
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        router?.routeToPopup(viewControllerToPresent)
+        super.present(viewControllerToPresent, animated: flag, completion: completion)
+        
     }
 }
 
@@ -118,51 +164,72 @@ extension SubViewController {
         /**
          # Version 2
          여러 컨텐츠를 여기서 만들어서 팝업뷰에 넣음
+         
+         
+         //컨텐츠뷰(in popoupview)
+         guard let contentsInPopup = ContentsInPopup.loadViewFromNib() else { return }
+         contentsInPopup.frame.size = self.view.frame.size
+         contentsInPopup.setImageView()  //스켈레톤을 보이게 하기 위해 꼭 이미지를 띄워야 함
+         self.view.addSubview(contentsInPopup)
+         
+         
+         //이미지가 로드되는 동안 흰 화면이 보이는 문제로
+         //스켈레톤 화면을 띄워서 해결함.
+         //스켈레톤 화면 위에 로딩 인디케이터도 띄움
+         //인디케이터와 스켈레톤 Start
+         showSkeleton()
+         setLoadingIndicator()
+         self.startLoadingIndicator()
+         
+         
+         //여러 컨텐츠를 만듦
+         
+         //View
+         let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
+         view.backgroundColor = .yellow
+         
+         //ImageView
+         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 1000))
+         let urlString = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8uyx3Z85xVn1ie0BCR3aY9U2gs4BbK1kAXg&usqp=CAU"
+         imageView.loadImageWithURLString(urlString, cacheKey: urlString, filter: nil)
+         
+         //Label
+         let label = UILabel()
+         label.numberOfLines = 0
+         label.backgroundColor = .green
+         label.text = "신데렐라는 어려서 부모님을 잃고요, 계모와 언니들에게 괴롭힘을 당했더래요~"
+         self.setLabelFontStyles([label], fontStyle: .body)
+         
+         let newSize = label.sizeThatFits(CGSize(width: self.view.frame.width, height: CGFloat.greatestFiniteMagnitude))
+         label.frame.size = newSize
+         
+         
+         //이미지가 로드 된 뒤에 화면을 띄우기 위해서 DispatchQueue를 이용함
+         DispatchQueue.main.asyncAfter(deadline: .now()) {
+             contentsInPopup.setItems([view, imageView, label])
+             
+             //인디케이터와 스켈레톤 Stop
+             self.stopLoadingIndicator()
+             self.hideSkeleton()
+             
+         }
          */
         
         
-        //컨텐츠뷰(in popoupview)
-        guard let contentsInPopup = ContentsInPopup.loadViewFromNib() else { return }
-        contentsInPopup.frame.size.width = self.view.frame.width
-        contentsInPopup.setImageView()  //스켈레톤을 보이게 하기 위해 꼭 이미지를 띄워야 함
-        self.view.addSubview(contentsInPopup)
+        /**
+         # Version 3
+         PopupView가 아닌 PopupViewController를 만들어서 띄움
+         */
         
         
-        //이미지가 로드되는 동안 흰 화면이 보이는 문제로
-        //스켈레톤 화면을 띄워서 해결함.
-        //스켈레톤 화면 위에 로딩 인디케이터도 띄움
-        //인디케이터와 스켈레톤 Start
-        showSkeleton()
-        setLoadingIndicator()
-        self.startLoadingIndicator()
         
         
-        //여러 컨텐츠를 만듦
         
-        //View
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
-        view.backgroundColor = .yellow
-        
-        //ImageView
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 1000))
-        let urlString = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8uyx3Z85xVn1ie0BCR3aY9U2gs4BbK1kAXg&usqp=CAU"
-        imageView.loadImageWithURLString(urlString, cacheKey: urlString, filter: nil)
-        
-        //Label
-        let label = UILabel()
-        label.text = "신데렐라는 어려서 부모님을 잃고요, 계모와 언니들에게 괴롭힘을 당했더래요~"
-        
-        
-        //이미지가 로드 된 뒤에 화면을 띄우기 위해서 DispatchQueue를 이용함
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            contentsInPopup.setItems([view, imageView])
-            
-            //인디케이터와 스켈레톤 Stop
-            self.stopLoadingIndicator()
-            self.hideSkeleton()
-            
-        }
-        
-        
+    }
+}
+
+//MARK: Accessibility
+extension SubViewController: DynamicTypeable {
+    func setLabelFontStyle() {
     }
 }

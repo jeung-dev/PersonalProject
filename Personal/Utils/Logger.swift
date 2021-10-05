@@ -49,6 +49,10 @@ class Logger {
         #endif
     }
     
+    
+    /// "🚫"   Error
+    /// - Parameters:
+    ///   - object: 디버그창에 띄울 내용
     public class func e(_ object: Any,
                         filename: String = #file,
                         line: Int = #line,
@@ -57,6 +61,9 @@ class Logger {
         __print(object, level: .e, filename: filename, line: line, column: column, funcname: funcname)
     }
     
+    /// "⚠️"   Warning
+    /// - Parameters:
+    ///   - object: 디버그창에 띄울 내용
     public class func w(_ object: Any,
                         filename: String = #file,
                         line: Int = #line,
@@ -65,6 +72,9 @@ class Logger {
         __print(object, level: .w, filename: filename, line: line, column: column, funcname: funcname)
     }
     
+    /// "ℹ️"   Info
+    /// - Parameters:
+    ///   - object: 디버그창에 띄울 내용
     public class func i(_ object: Any,
                         filename: String = #file,
                         line: Int = #line,
@@ -73,6 +83,9 @@ class Logger {
         __print(object, level: .i, filename: filename, line: line, column: column, funcname: funcname)
     }
     
+    /// "💬"   Debug
+    /// - Parameters:
+    ///   - object: 디버그창에 띄울 내용
     public class func d(_ object: Any,
                         filename: String = #file,
                         line: Int = #line,
@@ -81,6 +94,9 @@ class Logger {
         __print(object, level: .d, filename: filename, line: line, column: column, funcname: funcname)
     }
     
+    /// "🔬"   Verbose
+    /// - Parameters:
+    ///   - object: 디버그창에 띄울 내용
     public class func v(_ object: Any,
                         filename: String = #file,
                         line: Int = #line,
@@ -89,6 +105,10 @@ class Logger {
         __print(object, level: .v, filename: filename, line: line, column: column, funcname: funcname)
     }
     
+    
+    /// "💢" Angry developer
+    /// - Parameters:
+    ///   - object: 디버그창에 띄울 내용
     public class func wtf(_ object: Any,
                         filename: String = #file,
                         line: Int = #line,
