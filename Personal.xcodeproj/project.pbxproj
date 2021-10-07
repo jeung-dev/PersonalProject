@@ -46,6 +46,10 @@
 		8CBA62F726FC8D6D00EFD030 /* PersonalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA62F626FC8D6D00EFD030 /* PersonalUITests.swift */; };
 		8CD96B2C2701BBA8000E978C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD96B2B2701BBA8000E978C /* Logger.swift */; };
 		8CD96B322701CD35000E978C /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD96B312701CD35000E978C /* NavigationViewController.swift */; };
+		8CE65509270E2098002A838C /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE65508270E2098002A838C /* LabelExtension.swift */; };
+		8CE6550B270E20E3002A838C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6550A270E20E3002A838C /* ColorExtension.swift */; };
+		8CE6550D270E2126002A838C /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6550C270E2126002A838C /* FontExtension.swift */; };
+		8CE6550F270E2693002A838C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6550E270E2693002A838C /* StringExtension.swift */; };
 		B654A05F459E69509A70A6C3 /* Pods_Personal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41E71E1F13DBF54664DB6DD /* Pods_Personal.framework */; };
 		F8DF150B16282690BB9B5F45 /* Pods_PersonalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */; };
 /* End PBXBuildFile section */
@@ -115,6 +119,10 @@
 		8CBA62F826FC8D6D00EFD030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD96B2B2701BBA8000E978C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		8CD96B312701CD35000E978C /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		8CE65508270E2098002A838C /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
+		8CE6550A270E20E3002A838C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		8CE6550C270E2126002A838C /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		8CE6550E270E2693002A838C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC9514113CDE319F57F4CEB /* Pods-Personal-PersonalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal-PersonalUITests.release.xcconfig"; path = "Target Support Files/Pods-Personal-PersonalUITests/Pods-Personal-PersonalUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D8D9362BE4D8BDE74B874CC5 /* Pods-Personal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal.debug.xcconfig"; path = "Target Support Files/Pods-Personal/Pods-Personal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +181,10 @@
 				8C4CC97627042F9B00D4E4EB /* ImageViewExtension.swift */,
 				8C4CC97C270602FE00D4E4EB /* ScrollViewExtension.swift */,
 				8C228D922708C3ED006EA9FA /* VIewExtension.swift */,
+				8CE65508270E2098002A838C /* LabelExtension.swift */,
+				8CE6550A270E20E3002A838C /* ColorExtension.swift */,
+				8CE6550C270E2126002A838C /* FontExtension.swift */,
+				8CE6550E270E2693002A838C /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -577,6 +589,8 @@
 				8CBA62D526FC8D6C00EFD030 /* AppDelegate.swift in Sources */,
 				8C711BFA270B41D500DAB6EB /* PopupModels.swift in Sources */,
 				8C6E79142700C179002A01C2 /* HomeRouter.swift in Sources */,
+				8CE6550D270E2126002A838C /* FontExtension.swift in Sources */,
+				8CE6550B270E20E3002A838C /* ColorExtension.swift in Sources */,
 				8C6E790B2700BFD1002A01C2 /* HomeTableViewCell.swift in Sources */,
 				8C6E791F2700C64F002A01C2 /* SubRouter.swift in Sources */,
 				8C228D932708C3ED006EA9FA /* VIewExtension.swift in Sources */,
@@ -588,6 +602,7 @@
 				8C6E79282700E049002A01C2 /* IntroRouter.swift in Sources */,
 				8CA67D922703913F00D7C684 /* SceneDelegate.swift in Sources */,
 				8C4CC97227040FDB00D4E4EB /* HomeModels.swift in Sources */,
+				8CE65509270E2098002A838C /* LabelExtension.swift in Sources */,
 				8C6E79262700E03B002A01C2 /* IntroPresenter.swift in Sources */,
 				8CD96B322701CD35000E978C /* NavigationViewController.swift in Sources */,
 				8C6E791D2700C640002A01C2 /* SubPresenter.swift in Sources */,
@@ -598,6 +613,7 @@
 				8C6E79192700C513002A01C2 /* SubViewController.swift in Sources */,
 				8C711BEB270AFC9F00DAB6EB /* AppConfig.swift in Sources */,
 				8C711BF1270B2AA600DAB6EB /* PopupViewController.swift in Sources */,
+				8CE6550F270E2693002A838C /* StringExtension.swift in Sources */,
 				8C6E790E2700C13C002A01C2 /* HomeInteractor.swift in Sources */,
 				8C6E79242700E02D002A01C2 /* IntroInteractor.swift in Sources */,
 				8C711BF4270B41AB00DAB6EB /* PopupInteractor.swift in Sources */,
