@@ -85,26 +85,14 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         
         return b
     }()
-    func isOn(_ isCheck: Bool, btn: UIButton) {
-        if isCheck {
-            if #available(iOS 15.0, *) {
-                var configuration = btn.configuration
-                configuration?.image = UIImage.checkmark
-            } else {
-                // Fallback on earlier versions
-            }
-            
-        } else {
-            
-        }
-    }
+
     
     /**
      # getData Properties
      */
     let tableView: UITableView = UITableView()
     var data: [Sub.FetchData.Covid19] = []
-    private var refreshControl = UIRefreshControl()
+    var refreshControl = UIRefreshControl()
     var pagingNum: Int = 0
     
     
@@ -177,6 +165,8 @@ extension SubViewController {
 //MARK: Custom Methods
 extension SubViewController {
     
+    
+    /// VIP Setting
     func setup() {
         let viewController = self
         let interactor = SubInteractor()
@@ -191,99 +181,69 @@ extension SubViewController {
         router.dataStore = interactor
     }
     
+    
+    /// 키보드가 올라왔을 때 배경에 이벤트를 준다.
+    /// - Parameter gesture: Gesture
     @objc func tap(gesture: UITapGestureRecognizer) {
         self.widthTF.resignFirstResponder()
         self.heightTF.resignFirstResponder()
         self.hideKeyboardOnBackgroundTouched()
     }
     
+    
+    /// HomeViewController에서 선택한 항목에 따라서 화면을 분기한다.
     func dividedFromViewName() {
+        
         guard let viewName = router?.dataStore?.category else {
             Logger.d("Sub View Name이 없습니다.")
+            self.presentOKAlert(title: "오류", message: "Sub View Name이 없습니다.")
             return
         }
+        
         switch viewName {
+            
         case .KakaoLogin:
             
-            self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-            
-            //View Create
-            let loginButton = UIButton()
-            loginButton.addTarget(self, action: #selector(kakaoLoginClicked), for: .touchUpInside)
-            loginButton.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-            loginButton.setTitle("카카오 간편로그인", for: .normal)
-            
-            //Add Views
-            self.view.addSubViews([loginButton])
-            
-            
-            //safeArea top inset과 navigationbar height와 지정 padding을 더하여 버튼 위치를 정함.
-            let navigationBarHeight = self.navigationController?.navigationBar.frame.size.height ?? 0
-            let topPadding: CGFloat = 10
-            let safeArea = getSafeArea()
-            
-            loginButton.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                loginButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: safeArea.top + topPadding + navigationBarHeight),
-                loginButton.heightAnchor.constraint(equalToConstant: 50),
-                loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
-                loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10)
-            ])
-            
+            self.setupForKakaoLogin()
             break
             
-        case .getRestfulApiDATA:
             
-            //TableView Setting
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
-            self.tableView.register(UINib(nibName: "DataEachTableViewCell", bundle: nil), forCellReuseIdentifier: "DataEachTableViewCell")
-//            self.tableView.register(DataEachTableViewCell.self, forCellReuseIdentifier: "DataEachTableViewCell")
-            self.tableView.rowHeight = UITableView.automaticDimension
-            self.tableView.estimatedRowHeight = 100//UITableView.automaticDimension
             
-            self.tableView.prefetchDataSource = self
-            self.tableView.refreshControl = self.refreshControl
-            let refreshAction = UIAction { action in
-                self.data.removeAll()
-                self.pagingNum = 0
-                self.tableView.reloadData()
-            }
-            if #available(iOS 14.0, *) {
-                self.refreshControl.addAction(refreshAction, for: .valueChanged)
-            } else {
-                // Fallback on earlier versions
-                self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-            }
+        case .RestfulApi:
             
-            //Indicator
-            overrideUserInterfaceStyle = .light
-            
-            //Add Views
-            self.view.addSubViews([tableView])
-            
-            self.tableView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-            ])
-            
-            //Data Setting
-            self.fetchDataFromServer("\(self.pagingNum)")
-            
+            self.setupForRestfulApiDATA()
             break
             
-        case .CustomPopupView:
+        case .PopupVC:
             
-            self.setupForCustomPopupViewController()
-            
+            self.setupForPopupViewController()
             break
+            
         }
     }
     
+    
+    /// 버튼의 토글 상태를 변경한다.
+    /// - Parameters:
+    ///   - isSelected: check된 상태 Bool
+    ///   - btn: 토글시키려는 버튼
+    func isOn(_ isSelected: Bool, btn: UIButton) {
+        if #available(iOS 15.0, *) {
+            if true == isSelected {
+                btn.isSelected = !isSelected
+                btn.configuration?.image = UIImage(systemName: "square")
+            } else {
+                btn.isSelected = !isSelected
+                btn.configuration?.image = UIImage(systemName: "checkmark.square")
+            }
+        } else {
+            if true == isSelected {
+                btn.isSelected = !isSelected
+            } else {
+                btn.isSelected = !isSelected
+            }
+        }
+    }
     
 }
 

@@ -92,27 +92,7 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
     }
     
     
-    /// SafeArea의 Top과 Bottom을 구해서 리턴함
-    /// - Returns: SafeArea의 Top과 Bottom
-    func getSafeArea() -> (top: CGFloat, bottom: CGFloat) {
-        
-        var topPadding: CGFloat = 48
-        var bottomPadding: CGFloat = 36
-        
-        if #available(iOS 11.0, *) {
-            if #available(iOS 13.0, *) {
-                let window = UIApplication.shared.windows.first
-                topPadding = window?.safeAreaInsets.top ?? topPadding
-                bottomPadding = window?.safeAreaInsets.bottom ?? bottomPadding
-            } else {
-                let window = UIApplication.shared.keyWindow
-                topPadding = window?.safeAreaInsets.top ?? topPadding
-                bottomPadding = window?.safeAreaInsets.bottom ?? bottomPadding
-            }
-        }
-        
-        return (topPadding, bottomPadding)
-    }
+
     
     func filledBtnSetting(_ btn: UIButton, txt: String?, backgroundColor: UIColor, textColor: UIColor, action: UIAction) {
         if #available(iOS 15.0, *) {
@@ -141,8 +121,9 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
     }
     
     
-    /// SubVC가 팝업관련 화면을 띄웁니다.
-    func setupForCustomPopupViewController() {
+    /// SubViewController 화면을 Setting한다.
+    /// Type: PopupVC
+    func setupForPopupViewController() {
         
         //textField PickerView Setting
         self.createPickerView()

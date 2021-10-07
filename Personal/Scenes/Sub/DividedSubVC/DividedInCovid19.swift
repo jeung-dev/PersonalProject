@@ -53,10 +53,57 @@ extension SubViewController: UITableViewDelegate, UITableViewDataSource, UITable
         interactor?.fetchCovid19DataFromServer(page: "\(self.pagingNum)", perPage: "20")
     }
     
+    
+    /// 새로 받아온 데이터를 화면에 띄움
+    /// - Parameter data: 새로 받아온 데이터
     func displayFetchedCovidData(data: [Sub.FetchData.Covid19]) {
         self.data = data
         self.tableView.reloadData()
         self.stopLoadingIndicator()
+    }
+    
+    
+    /// SubViewController 화면을 Setting한다.
+    /// Type: RestfulApi
+    func setupForRestfulApiDATA() {
+        
+        //TableView Setting
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(UINib(nibName: "DataEachTableViewCell", bundle: nil), forCellReuseIdentifier: "DataEachTableViewCell")
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 100//UITableView.automaticDimension
+        
+        self.tableView.prefetchDataSource = self
+        self.tableView.refreshControl = self.refreshControl
+        let refreshAction = UIAction { action in
+            self.data.removeAll()
+            self.pagingNum = 0
+            self.tableView.reloadData()
+        }
+        if #available(iOS 14.0, *) {
+            self.refreshControl.addAction(refreshAction, for: .valueChanged)
+        } else {
+            // Fallback on earlier versions
+            self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        }
+        
+        //Indicator
+        overrideUserInterfaceStyle = .light
+        
+        //Add Views
+        self.view.addSubViews([tableView])
+        
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        
+        //Data Setting
+        self.fetchDataFromServer("\(self.pagingNum)")
     }
     
     
