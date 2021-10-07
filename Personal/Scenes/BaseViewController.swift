@@ -91,6 +91,16 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func hideKeyboardOnBackgroundTouched() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BaseViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
 
     /*
     // MARK: - Navigation

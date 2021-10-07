@@ -55,6 +55,9 @@
 		8CE6550F270E2693002A838C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6550E270E2693002A838C /* StringExtension.swift */; };
 		8CE65512270E3B21002A838C /* DataEachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE65510270E3B21002A838C /* DataEachTableViewCell.swift */; };
 		8CE65513270E3B21002A838C /* DataEachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE65511270E3B21002A838C /* DataEachTableViewCell.xib */; };
+		8CFAC68B270F3CCC007CA711 /* DividedInPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAC68A270F3CCC007CA711 /* DividedInPopup.swift */; };
+		8CFAC68E270F3DE2007CA711 /* DividedInCovid19.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAC68D270F3DE2007CA711 /* DividedInCovid19.swift */; };
+		8CFAC690270F3E11007CA711 /* DividedInKakaoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAC68F270F3E11007CA711 /* DividedInKakaoLogin.swift */; };
 		B654A05F459E69509A70A6C3 /* Pods_Personal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41E71E1F13DBF54664DB6DD /* Pods_Personal.framework */; };
 		F8DF150B16282690BB9B5F45 /* Pods_PersonalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */; };
 /* End PBXBuildFile section */
@@ -133,6 +136,9 @@
 		8CE6550E270E2693002A838C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		8CE65510270E3B21002A838C /* DataEachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEachTableViewCell.swift; sourceTree = "<group>"; };
 		8CE65511270E3B21002A838C /* DataEachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataEachTableViewCell.xib; sourceTree = "<group>"; };
+		8CFAC68A270F3CCC007CA711 /* DividedInPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividedInPopup.swift; sourceTree = "<group>"; };
+		8CFAC68D270F3DE2007CA711 /* DividedInCovid19.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividedInCovid19.swift; sourceTree = "<group>"; };
+		8CFAC68F270F3E11007CA711 /* DividedInKakaoLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividedInKakaoLogin.swift; sourceTree = "<group>"; };
 		9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC9514113CDE319F57F4CEB /* Pods-Personal-PersonalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal-PersonalUITests.release.xcconfig"; path = "Target Support Files/Pods-Personal-PersonalUITests/Pods-Personal-PersonalUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D8D9362BE4D8BDE74B874CC5 /* Pods-Personal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal.debug.xcconfig"; path = "Target Support Files/Pods-Personal/Pods-Personal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				8C6E79182700C513002A01C2 /* SubViewController.swift */,
+				8CFAC68C270F3D04007CA711 /* DividedSubVC */,
 				8C6E791A2700C636002A01C2 /* SubInteractor.swift */,
 				8C6E791C2700C640002A01C2 /* SubPresenter.swift */,
 				8C6E791E2700C64F002A01C2 /* SubRouter.swift */,
@@ -348,6 +355,16 @@
 				8CE65504270E1C6D002A838C /* SubWorker.swift */,
 			);
 			path = Worker;
+			sourceTree = "<group>";
+		};
+		8CFAC68C270F3D04007CA711 /* DividedSubVC */ = {
+			isa = PBXGroup;
+			children = (
+				8CFAC68A270F3CCC007CA711 /* DividedInPopup.swift */,
+				8CFAC68D270F3DE2007CA711 /* DividedInCovid19.swift */,
+				8CFAC68F270F3E11007CA711 /* DividedInKakaoLogin.swift */,
+			);
+			path = DividedSubVC;
 			sourceTree = "<group>";
 		};
 		A0EF7D59211413E56E1E5C44 /* Pods */ = {
@@ -613,6 +630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C711BF6270B41BD00DAB6EB /* PopupPresenter.swift in Sources */,
+				8CFAC68E270F3DE2007CA711 /* DividedInCovid19.swift in Sources */,
 				8C711BF8270B41C800DAB6EB /* PopupRouter.swift in Sources */,
 				8CBA62D926FC8D6C00EFD030 /* HomeViewController.swift in Sources */,
 				8C6E79222700DFE7002A01C2 /* IntroViewController.swift in Sources */,
@@ -623,6 +641,7 @@
 				8C711BFA270B41D500DAB6EB /* PopupModels.swift in Sources */,
 				8C6E79142700C179002A01C2 /* HomeRouter.swift in Sources */,
 				8CE6550D270E2126002A838C /* FontExtension.swift in Sources */,
+				8CFAC690270F3E11007CA711 /* DividedInKakaoLogin.swift in Sources */,
 				8CE65505270E1C6D002A838C /* SubWorker.swift in Sources */,
 				8CE65502270E1C3F002A838C /* BaseRequest.swift in Sources */,
 				8CE6550B270E20E3002A838C /* ColorExtension.swift in Sources */,
@@ -647,6 +666,7 @@
 				8C4CC97D270602FE00D4E4EB /* ScrollViewExtension.swift in Sources */,
 				8C4CC96F27040F4800D4E4EB /* SubModels.swift in Sources */,
 				8C6E79192700C513002A01C2 /* SubViewController.swift in Sources */,
+				8CFAC68B270F3CCC007CA711 /* DividedInPopup.swift in Sources */,
 				8C711BEB270AFC9F00DAB6EB /* AppConfig.swift in Sources */,
 				8C711BF1270B2AA600DAB6EB /* PopupViewController.swift in Sources */,
 				8CE6550F270E2693002A838C /* StringExtension.swift in Sources */,
