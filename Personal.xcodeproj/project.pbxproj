@@ -46,10 +46,15 @@
 		8CBA62F726FC8D6D00EFD030 /* PersonalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA62F626FC8D6D00EFD030 /* PersonalUITests.swift */; };
 		8CD96B2C2701BBA8000E978C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD96B2B2701BBA8000E978C /* Logger.swift */; };
 		8CD96B322701CD35000E978C /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD96B312701CD35000E978C /* NavigationViewController.swift */; };
+		8CE65500270E1BF6002A838C /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE654FF270E1BF6002A838C /* NetworkAPI.swift */; };
+		8CE65502270E1C3F002A838C /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE65501270E1C3F002A838C /* BaseRequest.swift */; };
+		8CE65505270E1C6D002A838C /* SubWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE65504270E1C6D002A838C /* SubWorker.swift */; };
 		8CE65509270E2098002A838C /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE65508270E2098002A838C /* LabelExtension.swift */; };
 		8CE6550B270E20E3002A838C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6550A270E20E3002A838C /* ColorExtension.swift */; };
 		8CE6550D270E2126002A838C /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6550C270E2126002A838C /* FontExtension.swift */; };
 		8CE6550F270E2693002A838C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6550E270E2693002A838C /* StringExtension.swift */; };
+		8CE65512270E3B21002A838C /* DataEachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE65510270E3B21002A838C /* DataEachTableViewCell.swift */; };
+		8CE65513270E3B21002A838C /* DataEachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE65511270E3B21002A838C /* DataEachTableViewCell.xib */; };
 		B654A05F459E69509A70A6C3 /* Pods_Personal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41E71E1F13DBF54664DB6DD /* Pods_Personal.framework */; };
 		F8DF150B16282690BB9B5F45 /* Pods_PersonalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */; };
 /* End PBXBuildFile section */
@@ -119,10 +124,15 @@
 		8CBA62F826FC8D6D00EFD030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD96B2B2701BBA8000E978C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		8CD96B312701CD35000E978C /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		8CE654FF270E1BF6002A838C /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
+		8CE65501270E1C3F002A838C /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		8CE65504270E1C6D002A838C /* SubWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubWorker.swift; sourceTree = "<group>"; };
 		8CE65508270E2098002A838C /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
 		8CE6550A270E20E3002A838C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		8CE6550C270E2126002A838C /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		8CE6550E270E2693002A838C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		8CE65510270E3B21002A838C /* DataEachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEachTableViewCell.swift; sourceTree = "<group>"; };
+		8CE65511270E3B21002A838C /* DataEachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataEachTableViewCell.xib; sourceTree = "<group>"; };
 		9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC9514113CDE319F57F4CEB /* Pods-Personal-PersonalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal-PersonalUITests.release.xcconfig"; path = "Target Support Files/Pods-Personal-PersonalUITests/Pods-Personal-PersonalUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D8D9362BE4D8BDE74B874CC5 /* Pods-Personal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal.debug.xcconfig"; path = "Target Support Files/Pods-Personal/Pods-Personal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +235,8 @@
 				8C6E791C2700C640002A01C2 /* SubPresenter.swift */,
 				8C6E791E2700C64F002A01C2 /* SubRouter.swift */,
 				8C4CC96E27040F4800D4E4EB /* SubModels.swift */,
+				8CE65510270E3B21002A838C /* DataEachTableViewCell.swift */,
+				8CE65511270E3B21002A838C /* DataEachTableViewCell.xib */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -284,6 +296,7 @@
 				8CBA62DD26FC8D6D00EFD030 /* Assets.xcassets */,
 				8CBA62E226FC8D6D00EFD030 /* Info.plist */,
 				8C4CC97027040FBD00D4E4EB /* Models */,
+				8CE654FE270E1BE0002A838C /* Services */,
 				8C6E79092700BD91002A01C2 /* Scenes */,
 				8CD96B2A2701BB8F000E978C /* Utils */,
 				8C4CC97527042F7B00D4E4EB /* Extensions */,
@@ -317,6 +330,24 @@
 				8C4CC9782705547800D4E4EB /* SkeletonDisplayable.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		8CE654FE270E1BE0002A838C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8CE65503270E1C5F002A838C /* Worker */,
+				8CE654FF270E1BF6002A838C /* NetworkAPI.swift */,
+				8CE65501270E1C3F002A838C /* BaseRequest.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8CE65503270E1C5F002A838C /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				8CE65504270E1C6D002A838C /* SubWorker.swift */,
+			);
+			path = Worker;
 			sourceTree = "<group>";
 		};
 		A0EF7D59211413E56E1E5C44 /* Pods */ = {
@@ -450,6 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE65513270E3B21002A838C /* DataEachTableViewCell.xib in Resources */,
 				8CBA62E126FC8D6D00EFD030 /* LaunchScreen.storyboard in Resources */,
 				8CBA62DE26FC8D6D00EFD030 /* Assets.xcassets in Resources */,
 				8CBA62DC26FC8D6C00EFD030 /* Main.storyboard in Resources */,
@@ -585,11 +617,14 @@
 				8CBA62D926FC8D6C00EFD030 /* HomeViewController.swift in Sources */,
 				8C6E79222700DFE7002A01C2 /* IntroViewController.swift in Sources */,
 				8C711BED270B0CB600DAB6EB /* MyTestViewController.swift in Sources */,
+				8CE65500270E1BF6002A838C /* NetworkAPI.swift in Sources */,
 				8C6E791B2700C636002A01C2 /* SubInteractor.swift in Sources */,
 				8CBA62D526FC8D6C00EFD030 /* AppDelegate.swift in Sources */,
 				8C711BFA270B41D500DAB6EB /* PopupModels.swift in Sources */,
 				8C6E79142700C179002A01C2 /* HomeRouter.swift in Sources */,
 				8CE6550D270E2126002A838C /* FontExtension.swift in Sources */,
+				8CE65505270E1C6D002A838C /* SubWorker.swift in Sources */,
+				8CE65502270E1C3F002A838C /* BaseRequest.swift in Sources */,
 				8CE6550B270E20E3002A838C /* ColorExtension.swift in Sources */,
 				8C6E790B2700BFD1002A01C2 /* HomeTableViewCell.swift in Sources */,
 				8C6E791F2700C64F002A01C2 /* SubRouter.swift in Sources */,
@@ -606,6 +641,7 @@
 				8C6E79262700E03B002A01C2 /* IntroPresenter.swift in Sources */,
 				8CD96B322701CD35000E978C /* NavigationViewController.swift in Sources */,
 				8C6E791D2700C640002A01C2 /* SubPresenter.swift in Sources */,
+				8CE65512270E3B21002A838C /* DataEachTableViewCell.swift in Sources */,
 				8C711BFC270B4B0F00DAB6EB /* Orders.swift in Sources */,
 				8C711BEF270B226A00DAB6EB /* PopupView.swift in Sources */,
 				8C4CC97D270602FE00D4E4EB /* ScrollViewExtension.swift in Sources */,
