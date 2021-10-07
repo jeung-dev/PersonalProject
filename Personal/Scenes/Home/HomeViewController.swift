@@ -18,8 +18,9 @@ class HomeViewController: BaseViewController, HomeDisplayLogic {
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     let category: [Home.Category] = [Home.Category.KakaoLogin,
-                              Home.Category.getRestfulApiDATA,
-                              Home.Category.CustomPopupView]
+                                     Home.Category.KakaoMap,
+                              Home.Category.RestfulApi,
+                              Home.Category.PopupVC]
     
     override func viewDidLoad() {
         super.viewDidLoad()

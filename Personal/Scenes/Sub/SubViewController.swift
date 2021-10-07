@@ -207,7 +207,9 @@ extension SubViewController {
             self.setupForKakaoLogin()
             break
             
+        case .KakaoMap:
             
+            break
             
         case .RestfulApi:
             

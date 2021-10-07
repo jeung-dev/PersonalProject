@@ -9,8 +9,9 @@ import Foundation
 
 struct Home {
     enum Category: String {
-        case KakaoLogin = "KakaoLogin"
-        case getRestfulApiDATA = "get restfulAPI DATA"
-        case CustomPopupView = "Custom PopupView"
+        case KakaoLogin = "Kakao Login"
+        case RestfulApi = "get restfulAPI DATA"
+        case PopupVC = "Custom PopupViewController"
+        case KakaoMap = "Kakao Map"
     }
 }
