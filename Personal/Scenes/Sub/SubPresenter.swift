@@ -12,12 +12,20 @@ import Foundation
  */
 protocol SubPresentationLogic {
     func fetchCovidData(covidData cd: [Sub.FetchData.Covid19])
+    func fetchUserInfo(user: Sub.FetchData.UserInfo)
 }
 
 class SubPresenter: SubPresentationLogic {
+    
+    
     var viewController: SubDisplayLogic?
     
     func fetchCovidData(covidData cd: [Sub.FetchData.Covid19]) {
         viewController?.displayFetchedCovidData(data: cd)
     }
+    
+    func fetchUserInfo(user: Sub.FetchData.UserInfo) {
+        viewController?.displayUserInfo(user: user)
+    }
+    
 }

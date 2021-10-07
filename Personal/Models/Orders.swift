@@ -10,6 +10,10 @@ import UIKit
 
 //MARK: Supporting Medels
 
+let KAKAO_NATIVE_KEY = "0414d83c38ba272c662f38bb871ef348"
+
+var KAKAO_OAUTH_TOKEN = ""
+
 struct Popup {
     
     var title: String

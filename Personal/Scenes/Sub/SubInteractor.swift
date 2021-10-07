@@ -16,6 +16,7 @@ protocol SubBusinessLogic {
     
     func setPopupData(_ data: Popup)
     func fetchCovid19DataFromServer(page p: String,perPage pp: String)
+    func kakaoLogin()
 }
 /**
  # 현재 상태를 유지해야하는 모든 프로퍼티들은 이 프로토콜에 선언되어야 한다. 이 프로토콜은 주로 Router와 View Controller 사이에 통신하는 데 사용된다.
@@ -111,4 +112,15 @@ class SubInteractor: SubBusinessLogic, SubDataStore {
             
         }
     }
+    
+    func kakaoLogin() {
+        subWorker.kakaoLogin(completionHandler: { user in
+            var subUser = Sub.FetchData.UserInfo()
+            subUser.nickname = user?.kakaoAccount?.profile?.nickname
+            subUser.profileImageUrl = user?.kakaoAccount?.profile?.profileImageUrl
+            subUser.thumbnailImageUrl = user?.kakaoAccount?.profile?.thumbnailImageUrl
+            self.presenter?.fetchUserInfo(user: subUser)
+        })
+    }
+    
 }

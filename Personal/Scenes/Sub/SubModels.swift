@@ -27,5 +27,10 @@ enum Sub {
             var phoneNumber: String?    //사무실 전화번호
         }
         
+        struct UserInfo {
+            var nickname: String?
+            var profileImageUrl: URL?
+            var thumbnailImageUrl: URL?
+        }
     }
 }
