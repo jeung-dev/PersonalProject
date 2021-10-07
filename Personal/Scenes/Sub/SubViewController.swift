@@ -18,13 +18,16 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
     var interactor: SubBusinessLogic?
     var router: (NSObjectProtocol & SubRoutingLogic & SubDataPassing)?
     
+    /**
+     # Popup Properties
+     */
     let popupContentsType: [String] = ["View", "ImageView", "Label"] //CustomPopup Picker Data
     let contentTypePickField = UITextField()
     let heightLbl = UILabel()
     let textLblIfTypeIsLabel = UILabel(), ifLabelTF = UITextField()
+    let widthTF = UITextField(), heightTF = UITextField()
     let btnAddContent = UIButton()
     let btnOpenPopupVC = UIButton()
-    
     let pickerView: UIPickerView = {
         let pv = UIPickerView()
         return pv
@@ -54,7 +57,11 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.widthTF.delegate = self
+        self.heightTF.delegate = self
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap(gesture:)))
+        self.view.addGestureRecognizer(tapGesture)
         
         self.dividedFromViewName()
     }
@@ -86,6 +93,12 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         router.dataStore = interactor
     }
     
+    @objc func tap(gesture: UITapGestureRecognizer) {
+        self.widthTF.resignFirstResponder()
+        self.heightTF.resignFirstResponder()
+        self.hideKeyboardOnBackgroundTouched()
+    }
+    
     func dividedFromViewName() {
         guard let viewName = router?.dataStore?.category else {
             Logger.d("Sub View Name이 없습니다.")
@@ -94,6 +107,7 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         switch viewName {
         case .KakaoLogin:
             break
+            
         case .getRestfulApiDATA:
             
             //TableView Setting
@@ -145,6 +159,16 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         }
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if self.refreshControl.isRefreshing {
+            self.refreshControl.endRefreshing()
+            //데이터 다시 받기
+            self.fetchDataFromServer("\(self.pagingNum)")
+        }
+    }
+    
+    //MARK: ViewController Move to
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         router?.routeToPopup(segue)
     }
@@ -162,9 +186,16 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
     }
 }
 
-//MARK: CustomPopupView
+//MARK: CustomPopupViewController
 extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        self.widthTF.resignFirstResponder()
+        self.heightTF.resignFirstResponder()
+        
+        return true
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -281,6 +312,13 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
         
     }
     
+    func presentOKAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     /// SubVC가 팝업관련 화면을 띄웁니다.
     func setupForCustomPopupViewController() {
@@ -297,37 +335,29 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
         
         //create
         let typeLbl = UILabel(), frameLbl = UILabel()
-        let xLbl = UILabel(), yLbl = UILabel(), widthLbl = UILabel()
-        let xTF = UITextField(), yTF = UITextField(), widthTF = UITextField(), heightTF = UITextField()
+        let widthLbl = UILabel()
+        
         
         //setup
         typeLbl.text = "Content Type"
-        frameLbl.text = "Content Frame"
-        xLbl.text = "x : "
-        yLbl.text = "y : "
+        frameLbl.text = "Content Size"
         widthLbl.text = "width : "
         self.heightLbl.text = "height : "
         
         self.setLabelFontStyles([
             typeLbl:.title1,
             frameLbl:.title1,
-            xLbl:.title3,
-            yLbl:.title3,
             widthLbl:.title3,
             self.heightLbl:.title3
         ])
         self.setTextFieldFontStyles([
             self.contentTypePickField:.body,
-            xTF:.body,
-            yTF:.body,
             widthTF:.body,
             heightTF:.body,
         ])
         
         typeLbl.frame.size = typeLbl.intrinsicContentSize
         frameLbl.frame.size = frameLbl.intrinsicContentSize
-        xLbl.frame.size = xLbl.intrinsicContentSize
-        yLbl.frame.size = yLbl.intrinsicContentSize
         widthLbl.frame.size = widthLbl.intrinsicContentSize
         self.heightLbl.frame.size = self.heightLbl.intrinsicContentSize
         
@@ -338,56 +368,75 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
         
         typeLbl.textAlignment = .center
         frameLbl.textAlignment = .center
-        xLbl.textAlignment = .center
-        yLbl.textAlignment = .center
         widthLbl.textAlignment = .center
         self.heightLbl.textAlignment = .center
         
-        self.contentTypePickField.borderStyle = .bezel
-        xTF.borderStyle = .bezel
-        yTF.borderStyle = .bezel
-        widthTF.borderStyle = .bezel
-        heightTF.borderStyle = .bezel
+        self.contentTypePickField.borderStyle = .roundedRect
+        self.widthTF.borderStyle = .roundedRect
+        self.heightTF.borderStyle = .roundedRect
+        
+        self.contentTypePickField.placeholder = "컨텐츠 Type을 선택하세요."
+        self.widthTF.placeholder = "비율에 맞춰 재설정됩니다."
+        self.heightTF.placeholder = "비율에 맞춰 재설정됩니다."
         
         //action
         let btnAddAction: UIAction = UIAction { action in
             
             if var contentData = self.interactor?.popupDataStore {
                 
-                let contentType = self.contentTypePickField.text ?? ""
-                let contentX: CGFloat = CGFloat(Float(xTF.text ?? "") ?? 0)
-                let contentY: CGFloat = CGFloat(Float(yTF.text ?? "") ?? 0)
-                let contentWidth: CGFloat = CGFloat(Float(widthTF.text ?? "") ?? 0)
-                let contentHeight: CGFloat = CGFloat(Float(heightTF.text ?? "") ?? 0)
-                let lblText = self.ifLabelTF.text ?? ""
+                var errorMessage = ""
+                let noText = "No Text"
+                guard let contentType = self.contentTypePickField.text else {
+                    errorMessage = "content type 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Content Type 오류", message: errorMessage)
+                    return
+                }
+                
+                guard contentType != "" else {
+                    errorMessage = "content type 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Content Type 오류", message: errorMessage)
+                    return
+                }
+                Logger.v(contentType)
+                
+                guard let widthText = Float(self.widthTF.text ?? noText) else {
+                    errorMessage = "width 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Size 오류", message: errorMessage)
+                    return
+                }
+                
+                guard let heightText = Float(self.heightTF.text ?? noText) else {
+                    errorMessage = "height 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Size 오류", message: errorMessage)
+                    return
+                }
+                
+                let contentWidth: CGFloat = CGFloat(widthText)
+                let contentHeight: CGFloat = CGFloat(heightText)
                 
                 switch contentType {
                 case "View":
-                    let cView = UIView(frame: CGRect(x: contentX, y: contentY, width: contentWidth, height: contentHeight))
-                    cView.layer.borderWidth = 1
-                    cView.layer.borderColor = UIColor.black.cgColor
+                    let cView = self.getView(width: contentWidth, height: contentHeight, backgroundColor: .orange)
                     contentData.views?.append(cView)
                     break
                 case "ImageView":
-                    let cImgView = UIImageView(frame: CGRect(x: contentX, y: contentY, width: contentWidth, height: contentHeight))
-                    cImgView.layer.borderWidth = 1
-                    cImgView.layer.borderColor = UIColor.red.cgColor
+                    let cImgView = self.getImageView(width: contentWidth, height: contentHeight, backgroundColor: .purple)
                     contentData.imageViews?.append(cImgView)
                     break
                 case "Label":
-                    let cLabel = UILabel(frame: CGRect(x: contentX, y: contentY, width: contentWidth, height: contentHeight))
-                    cLabel.layer.borderWidth = 1
-                    cLabel.layer.borderColor = UIColor.green.cgColor
-                    cLabel.text = lblText
-                    cLabel.numberOfLines = 0
-                    self.setLabelFontStyles([cLabel:.body])
+                    
+                    guard let lblText = self.ifLabelTF.text else {
+                        errorMessage = "label text 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                        self.presentOKAlert(title: "Label Text 오류", message: errorMessage)
+                        return
+                    }
+                    
+                    let cLabel = self.getLabel(text: lblText, backgroundColor: .brown, type: .body)
                     contentData.labels?.append(cLabel)
                     break
                 default:
-                    let alert = UIAlertController(title: "오류", message: "Content Type은 필수입니다.\n다른 값은 넣지 않으면 0 또는 없는 텍스트로 표시됩니다.", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-                    alert.addAction(action)
-                    self.present(alert, animated: true, completion: nil)
+                    errorMessage = "content type 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Content Type 오류", message: errorMessage)
                     break
                 }
                 
@@ -398,42 +447,64 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
                 }
                 
             } else {
+                
                 var contentData: Popup = Popup(title: "사용자 컨텐츠", views: [], imageViews: [], labels: [], defaultButton: .confilm, addButtons: nil)
                 
-                let contentType = self.contentTypePickField.text ?? ""
-                let contentX: CGFloat = CGFloat(Float(xTF.text ?? "") ?? 0)
-                let contentY: CGFloat = CGFloat(Float(yTF.text ?? "") ?? 0)
-                let contentWidth: CGFloat = CGFloat(Float(widthTF.text ?? "") ?? 0)
-                let contentHeight: CGFloat = CGFloat(Float(heightTF.text ?? "") ?? 0)
-                let lblText = self.ifLabelTF.text ?? ""
+                var errorMessage = ""
+                let noText = "No Text"
+                
+                guard let contentType = self.contentTypePickField.text else {
+                    errorMessage = "content type 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Content Type 오류", message: errorMessage)
+                    return
+                }
+                
+                guard contentType != "" else {
+                    errorMessage = "content type 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Content Type 오류", message: errorMessage)
+                    return
+                }
+                
+                Logger.v(contentType)
+                
+                guard let widthText = Float(self.widthTF.text ?? noText) else {
+                    errorMessage = "width 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Size 오류", message: errorMessage)
+                    return
+                }
+                
+                guard let heightText = Float(self.heightTF.text ?? noText) else {
+                    errorMessage = "height 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Size 오류", message: errorMessage)
+                    return
+                }
+                
+                let contentWidth: CGFloat = CGFloat(widthText)
+                let contentHeight: CGFloat = CGFloat(heightText)
                 
                 switch contentType {
                 case "View":
-                    let cView = UIView(frame: CGRect(x: contentX, y: contentY, width: contentWidth, height: contentHeight))
-                    cView.layer.borderWidth = 1
-                    cView.layer.borderColor = UIColor.black.cgColor
+                    let cView = self.getView(width: contentWidth, height: contentHeight, backgroundColor: .orange)
                     contentData.views?.append(cView)
                     break
                 case "ImageView":
-                    let cImgView = UIImageView(frame: CGRect(x: contentX, y: contentY, width: contentWidth, height: contentHeight))
-                    cImgView.layer.borderWidth = 1
-                    cImgView.layer.borderColor = UIColor.red.cgColor
+                    let cImgView = self.getImageView(width: contentWidth, height: contentHeight, backgroundColor: .purple)
                     contentData.imageViews?.append(cImgView)
                     break
                 case "Label":
-                    let cLabel = UILabel(frame: CGRect(x: contentX, y: contentY, width: contentWidth, height: contentHeight))
-                    cLabel.layer.borderWidth = 1
-                    cLabel.layer.borderColor = UIColor.green.cgColor
-                    cLabel.text = lblText
-                    cLabel.numberOfLines = 0
-                    self.setLabelFontStyles([cLabel:.body])
+                    
+                    guard let lblText = self.ifLabelTF.text else {
+                        errorMessage = "label text 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                        self.presentOKAlert(title: "Label Text 오류", message: errorMessage)
+                        return
+                    }
+                    
+                    let cLabel = self.getLabel(text: lblText, backgroundColor: .brown, type: .body)
                     contentData.labels?.append(cLabel)
                     break
                 default:
-                    let alert = UIAlertController(title: "오류", message: "Content Type은 필수입니다.\n다른 값은 넣지 않으면 0 또는 없는 텍스트로 표시됩니다.", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-                    alert.addAction(action)
-                    self.present(alert, animated: true, completion: nil)
+                    errorMessage = "content type 값이 정상적이지 않습니다.\n다시 확인해주세요."
+                    self.presentOKAlert(title: "Content Type 오류", message: errorMessage)
                     break
                 }
                 
@@ -470,8 +541,6 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
         self.view.addSubViews([typeLbl,
                                self.contentTypePickField,
                                frameLbl,
-                               xLbl, xTF,
-                               yLbl, yTF,
                                widthLbl, widthTF,
                                self.heightLbl, heightTF,
                                self.btnAddContent, self.btnOpenPopupVC])
@@ -482,14 +551,10 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
             self.contentTypePickField.translatesAutoresizingMaskIntoConstraints = false
             typeLbl.translatesAutoresizingMaskIntoConstraints = false
             frameLbl.translatesAutoresizingMaskIntoConstraints = false
-            xLbl.translatesAutoresizingMaskIntoConstraints = false
-            yLbl.translatesAutoresizingMaskIntoConstraints = false
             widthLbl.translatesAutoresizingMaskIntoConstraints = false
             self.heightLbl.translatesAutoresizingMaskIntoConstraints = false
-            xTF.translatesAutoresizingMaskIntoConstraints = false
-            yTF.translatesAutoresizingMaskIntoConstraints = false
-            widthTF.translatesAutoresizingMaskIntoConstraints = false
-            heightTF.translatesAutoresizingMaskIntoConstraints = false
+            self.widthTF.translatesAutoresizingMaskIntoConstraints = false
+            self.heightTF.translatesAutoresizingMaskIntoConstraints = false
             self.btnAddContent.translatesAutoresizingMaskIntoConstraints = false
             self.btnOpenPopupVC.translatesAutoresizingMaskIntoConstraints = false
             
@@ -505,37 +570,21 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
                 frameLbl.topAnchor.constraint(equalTo: self.contentTypePickField.bottomAnchor, constant: 10),
                 frameLbl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
                 
-                xLbl.topAnchor.constraint(equalTo: frameLbl.bottomAnchor, constant: 20),
-                xLbl.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
-                xLbl.widthAnchor.constraint(equalToConstant: xLbl.frame.size.width),
-                xTF.leadingAnchor.constraint(equalTo: xLbl.trailingAnchor, constant: 10),
-                xTF.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
-                xTF.centerYAnchor.constraint(equalTo: xLbl.centerYAnchor),
-                xTF.heightAnchor.constraint(equalToConstant: 40),
-                
-                yLbl.topAnchor.constraint(equalTo: xLbl.bottomAnchor, constant: 20),
-                yLbl.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
-                yLbl.widthAnchor.constraint(equalToConstant: yLbl.frame.size.width),
-                yTF.leadingAnchor.constraint(equalTo: yLbl.trailingAnchor, constant: 10),
-                yTF.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
-                yTF.centerYAnchor.constraint(equalTo: yLbl.centerYAnchor),
-                yTF.heightAnchor.constraint(equalToConstant: 40),
-                
-                widthLbl.topAnchor.constraint(equalTo: yLbl.bottomAnchor, constant: 20),
+                widthLbl.topAnchor.constraint(equalTo: frameLbl.bottomAnchor, constant: 20),
                 widthLbl.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
                 widthLbl.widthAnchor.constraint(equalToConstant: widthLbl.frame.size.width),
-                widthTF.leadingAnchor.constraint(equalTo: widthLbl.trailingAnchor, constant: 10),
-                widthTF.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
-                widthTF.centerYAnchor.constraint(equalTo: widthLbl.centerYAnchor),
-                widthTF.heightAnchor.constraint(equalToConstant: 40),
+                self.widthTF.leadingAnchor.constraint(equalTo: widthLbl.trailingAnchor, constant: 10),
+                self.widthTF.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
+                self.widthTF.centerYAnchor.constraint(equalTo: widthLbl.centerYAnchor),
+                self.widthTF.heightAnchor.constraint(equalToConstant: 40),
                 
                 self.heightLbl.topAnchor.constraint(equalTo: widthLbl.bottomAnchor, constant: 20),
                 self.heightLbl.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
                 self.heightLbl.widthAnchor.constraint(equalToConstant: self.heightLbl.frame.size.width),
-                heightTF.leadingAnchor.constraint(equalTo: self.heightLbl.trailingAnchor, constant: 10),
-                heightTF.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
-                heightTF.centerYAnchor.constraint(equalTo: self.heightLbl.centerYAnchor),
-                heightTF.heightAnchor.constraint(equalToConstant: 40),
+                self.heightTF.leadingAnchor.constraint(equalTo: self.heightLbl.trailingAnchor, constant: 10),
+                self.heightTF.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
+                self.heightTF.centerYAnchor.constraint(equalTo: self.heightLbl.centerYAnchor),
+                self.heightTF.heightAnchor.constraint(equalToConstant: 40),
                 
                 self.btnAddContent.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
                 self.btnAddContent.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(safeArea.bottom + 10)),
@@ -572,6 +621,18 @@ extension SubViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPicker
         l.backgroundColor = backgroundColor
         self.setLabelFontStyles([l:type])
         return l
+    }
+}
+
+//MARK: TapGesture
+extension UIViewController {
+    func hideKeyboardOnBackgroundTouched() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 

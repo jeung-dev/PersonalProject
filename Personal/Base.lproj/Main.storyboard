@@ -212,9 +212,6 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGF-7M-L9p" userLabel="확인">
                                                 <rect key="frame" x="124.5" y="0.0" width="125" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="확인"/>
                                                 <connections>
                                                     <action selector="confirmButtonClicked:" destination="JYn-jA-PQa" eventType="touchUpInside" id="kbC-YC-0TC"/>
@@ -334,9 +331,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

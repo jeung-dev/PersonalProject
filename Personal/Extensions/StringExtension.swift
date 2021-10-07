@@ -8,7 +8,7 @@
 import Foundation
 
 public extension String {
-    public var fullRange: NSRange {
+    var fullRange: NSRange {
         return NSRange(location: 0, length: self.count)
     }
     

@@ -174,7 +174,7 @@ class PopupViewController: BaseViewController, PopupDisplayLogic {
             
             for v in views {
                 
-                changeWidth(v)
+                getResizeByKeepingAspectRatioView(v)
                 
                 v.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
@@ -192,7 +192,7 @@ class PopupViewController: BaseViewController, PopupDisplayLogic {
             
             for imgV in imgViews {
                 
-                changeWidth(imgV)
+                getResizeByKeepingAspectRatioView(imgV)
                 
                 imgV.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
@@ -230,14 +230,14 @@ class PopupViewController: BaseViewController, PopupDisplayLogic {
         source.frame.size.width = self.popupView.frame.width
     }
     
-    func getResizeByKeepingAspectRatioView(_ source: UIView, toWidth: CGFloat) -> CGSize {
+    func getResizeByKeepingAspectRatioView(_ source: UIView) {
         let oldWidth = source.frame.size.width
-        let scaleFactor = toWidth / oldWidth
+        let scaleFactor = self.popupView.frame.width / oldWidth
         let newHeight = source.frame.size.height * scaleFactor
         let newWidth = oldWidth * scaleFactor;
         let newSize = CGSize(width: newWidth, height: newHeight)
         
-        return newSize
+        source.frame.size = newSize
     }
 
 }
