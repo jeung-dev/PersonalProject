@@ -37,24 +37,29 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         let b = UIButton()
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.gray()
-            configuration.image = UIImage(named: "square")
+            configuration.image = UIImage(systemName: "square")
             configuration.title = "X버튼"
             b.configuration = configuration
         } else {
             // Fallback on earlier versions
+            b.setImage(UIImage(systemName: "square"), for: .normal)
+            b.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
+            b.setTitle("X버튼", for: .normal)
         }
-        
         return b
     }()
     let btnIsOk: UIButton = {
         let b = UIButton()
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.gray()
-            configuration.image = UIImage(named: "square")
+            configuration.image = UIImage(systemName: "square")
             configuration.title = "확인버튼"
             b.configuration = configuration
         } else {
             // Fallback on earlier versions
+            b.setImage(UIImage(systemName: "square"), for: .normal)
+            b.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
+            b.setTitle("확인버튼", for: .normal)
         }
         
         return b
@@ -63,11 +68,14 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         let b = UIButton()
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.gray()
-            configuration.image = UIImage(named: "square")
+            configuration.image = UIImage(systemName: "square")
             configuration.title = "취소버튼"
             b.configuration = configuration
         } else {
             // Fallback on earlier versions
+            b.setImage(UIImage(systemName: "square"), for: .normal)
+            b.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
+            b.setTitle("취소버튼", for: .normal)
         }
         
         return b
@@ -76,11 +84,14 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
         let b = UIButton()
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.gray()
-//            configuration.image = UIImage.
+            configuration.image = UIImage(systemName: "square")
             configuration.title = "기타버튼"
             b.configuration = configuration
         } else {
             // Fallback on earlier versions
+            b.setImage(UIImage(systemName: "square"), for: .normal)
+            b.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
+            b.setTitle("기타버튼", for: .normal)
         }
         
         return b
