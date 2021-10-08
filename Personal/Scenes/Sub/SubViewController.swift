@@ -226,6 +226,8 @@ extension SubViewController {
             
         case .KakaoMap:
             
+            self.creatMap()
+            
             break
             
         case .RestfulApi:
@@ -236,6 +238,10 @@ extension SubViewController {
         case .PopupVC:
             
             self.setupForPopupViewController()
+            break
+            
+        case .NoticeBoard:
+            
             break
             
         }
