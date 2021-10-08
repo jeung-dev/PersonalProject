@@ -128,14 +128,33 @@ class BaseViewController: UIViewController {
         
         return (topPadding, bottomPadding)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    /// 버튼의 토글 상태를 변경한다.
+    /// - Parameters:
+    ///   - isSelected: check된 상태 Bool
+    ///   - btn: 토글시키려는 버튼
+    func isOn(_ isSelected: Bool, btn: UIButton) {
+        if #available(iOS 15.0, *) {
+            if true == isSelected {
+                btn.isSelected = !isSelected
+                btn.configuration?.image = UIImage(systemName: "square")
+            } else {
+                btn.isSelected = !isSelected
+                btn.configuration?.image = UIImage(systemName: "checkmark.square")
+            }
+        } else {
+            if true == isSelected {
+                btn.isSelected = !isSelected
+            } else {
+                btn.isSelected = !isSelected
+            }
+        }
     }
-    */
+    
+    func setTranslatesAutoresizingMaskIntoConstraintsToFalse(_ with: [UIView]) {
+        for something in with {
+            something.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
 
 }

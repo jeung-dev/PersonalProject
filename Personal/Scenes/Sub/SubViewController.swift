@@ -27,7 +27,12 @@ class SubViewController: BaseViewController, SubDisplayLogic, SkeletonDisplayabl
     let heightLbl = UILabel()
     let textLblIfTypeIsLabel = UILabel(), ifLabelTF = UITextField()
     let widthTF = UITextField(), heightTF = UITextField()
-    let btnAddContent = UIButton()
+    let btnAddContent: UIButton = {
+        let b = UIButton()
+        
+        
+        return b
+    }()
     let btnOpenPopupVC = UIButton()
     let pickerView: UIPickerView = {
         let pv = UIPickerView()
@@ -140,6 +145,7 @@ extension SubViewController {
         super.viewWillAppear(animated)
         self.textLblIfTypeIsLabel.removeFromSuperview()
         self.ifLabelTF.removeFromSuperview()
+        self.btnIsQuit.updateConstraintsIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -237,23 +243,19 @@ extension SubViewController {
     
     
     /// 버튼의 토글 상태를 변경한다.
+    /// iOS 15.0 이하에서는 버튼을 만들 때 nomal과 selected 이미지를 넣었다고 가정한다.
     /// - Parameters:
     ///   - isSelected: check된 상태 Bool
     ///   - btn: 토글시키려는 버튼
-    func isOn(_ isSelected: Bool, btn: UIButton) {
+    @objc func toggledCheckBox(_ isSelected: Bool, btn: UIButton) {
+        
+        self.isOn(isSelected, btn: btn)
+        
         if #available(iOS 15.0, *) {
             if true == isSelected {
-                btn.isSelected = !isSelected
                 btn.configuration?.image = UIImage(systemName: "square")
             } else {
-                btn.isSelected = !isSelected
                 btn.configuration?.image = UIImage(systemName: "checkmark.square")
-            }
-        } else {
-            if true == isSelected {
-                btn.isSelected = !isSelected
-            } else {
-                btn.isSelected = !isSelected
             }
         }
     }
