@@ -12,6 +12,7 @@ import UIKit
  */
 @objc protocol HomeRoutingLogic {
     func routeToSub(segue: UIStoryboardSegue?)
+    func routeToNoticeBoard(segue: UIStoryboardSegue?)
 }
 
 /**
@@ -22,6 +23,7 @@ protocol HomeDataPassing {
 }
 
 class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
+    
     var dataStore: HomeDataStore?
     
     weak var viewController: HomeViewController?
@@ -43,12 +45,45 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
         }
     }
     
-    func navigateToSub(source: HomeViewController, destination: SubViewController) {
+    func routeToNoticeBoard(segue: UIStoryboardSegue?) {
+        if let _segue = segue {
+            
+            guard let destinationVC = _segue.destination as? NoticeBoardViewController else {
+                Logger.e("segue의 destination이 NoticeBoardViewController가 아닙니다.")
+                return
+            }
+            
+            guard var destinationDS = destinationVC.router?.dataStore else {
+                Logger.e("destination의 router에 dataSore가 없습니다.")
+                return
+            }
+            
+            passingDataToNoticeBoard(source: dataStore!, destination: &destinationDS)
+        } else {
+            let index = viewController!.navigationController!.viewControllers.count - 2
+            guard let destinationVC = viewController?.navigationController?.viewControllers[index] as? NoticeBoardViewController else {
+                Logger.e("navigation에서 destinationVC가 없음")
+                return
+            }
+            navigateToNoticeBoard(source: viewController!, destination: destinationVC)
+            
+        }
+    }
+    
+    private func navigateToSub(source: HomeViewController, destination: SubViewController) {
         source.navigationController?.popViewController(animated: true)
     }
     
-    func passingDataToSub(source: HomeDataStore, destination: inout SubDataStore) {
+    private func passingDataToSub(source: HomeDataStore, destination: inout SubDataStore) {
         //data set
         destination.category = source.category
+    }
+    
+    private func passingDataToNoticeBoard(source: HomeDataStore, destination: inout NoticeBoardDataStore) {
+        
+    }
+    
+    private func navigateToNoticeBoard(source: HomeViewController, destination: NoticeBoardViewController) {
+        source.navigationController?.popViewController(animated: true)
     }
 }

@@ -1,0 +1,72 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0wt-Et-nUp"; */
+"0wt-Et-nUp.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Home"; ObjectID = "6B7-Bd-deB"; */
+"6B7-Bd-deB.title" = "Home";
+
+/* Class = "UILabel"; text = "• 용량은 각 20MB 이하, jpg, png, gif 파일만 첨부 가능합니다.\n• 첨부파일은 최대 3개까지 등록 가능합니다.\n• 이미지에 개인정보(주민번호 등)가 포함되지 않도록 주의해주세요."; ObjectID = "6Qs-Rv-6Nf"; */
+"6Qs-Rv-6Nf.text" = "• 용량은 각 20MB 이하, jpg, png, gif 파일만 첨부 가능합니다.\n• 첨부파일은 최대 3개까지 등록 가능합니다.\n• 이미지에 개인정보(주민번호 등)가 포함되지 않도록 주의해주세요.";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BVq-hh-bgR"; */
+"BVq-hh-bgR.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "문의 유형을 선택해주세요."; ObjectID = "F0D-fu-epG"; */
+"F0D-fu-epG.text" = "문의 유형을 선택해주세요.";
+
+/* Class = "UIButton"; configuration.title = "확인"; ObjectID = "FGF-7M-L9p"; */
+"FGF-7M-L9p.configuration.title" = "확인";
+
+/* Class = "UINavigationItem"; title = "HOME"; ObjectID = "KFk-X2-Oca"; */
+"KFk-X2-Oca.title" = "HOME";
+
+/* Class = "UILabel"; text = "빡친다"; ObjectID = "M38-dM-opu"; */
+"M38-dM-opu.text" = "빡친다";
+
+/* Class = "UIButton"; configuration.title = "기타"; ObjectID = "MCK-HN-fx6"; */
+"MCK-HN-fx6.configuration.title" = "기타";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "MCK-HN-fx6"; */
+"MCK-HN-fx6.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "취소"; ObjectID = "MgZ-TU-lmo"; */
+"MgZ-TU-lmo.configuration.title" = "취소";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "MgZ-TU-lmo"; */
+"MgZ-TU-lmo.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Ng7-K6-rjG"; */
+"Ng7-K6-rjG.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "1:1 문의하기"; ObjectID = "WNU-fs-vjf"; */
+"WNU-fs-vjf.configuration.title" = "1:1 문의하기";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "WNU-fs-vjf"; */
+"WNU-fs-vjf.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "개인적인 프로젝트"; ObjectID = "Wo8-pV-s9I"; */
+"Wo8-pV-s9I.text" = "개인적인 프로젝트";
+
+/* Class = "UILabel"; text = "29CM을 이용하면서 불편사항이나 개선사항을 알려주세요. 고객님의 소중한 의견으로 더 나은 29CM가 되도록 하겠습니다.\n상품/주문/배송 문의는 1:1문의로 해주세요."; ObjectID = "XE5-7W-ikA"; */
+"XE5-7W-ikA.text" = "29CM을 이용하면서 불편사항이나 개선사항을 알려주세요. 고객님의 소중한 의견으로 더 나은 29CM가 되도록 하겠습니다.\n상품/주문/배송 문의는 1:1문의로 해주세요.";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Xdw-df-cI2"; */
+"Xdw-df-cI2.text" = "0";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZsV-OL-1V9"; */
+"ZsV-OL-1V9.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "보내기"; ObjectID = "aaz-Fm-C8M"; */
+"aaz-Fm-C8M.configuration.title" = "보내기";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "aaz-Fm-C8M"; */
+"aaz-Fm-C8M.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "고객의 소리"; ObjectID = "low-yb-Sg1"; */
+"low-yb-Sg1.text" = "고객의 소리";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "sdF-i8-bUq"; */
+"sdF-i8-bUq.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "tSh-uJ-Z8S"; */
+"tSh-uJ-Z8S.text" = "Label";

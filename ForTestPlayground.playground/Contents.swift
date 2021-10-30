@@ -1,69 +1,81 @@
 
 import UIKit
-import PlaygroundSupport
 
-class TestViewController: UIViewController {
-    let textFiled: UITextField = {
-        let textFiled = UITextField()
-        textFiled.backgroundColor = .gray
-        return textFiled
-    }()
-    let button: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .red
-        return button
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .black
-        textFiled.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
-        button.frame = CGRect(x: 0, y: 60, width: 50, height: 50)
-        print("?????")
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpOutside)
-        
-        self.view.addSubViews([textFiled, button])
-        presentAlert(title: "얼럿", message: "얼럿뜨나?", actionTitle: "확인")
+let str = "선택 "
+
+private func checkNamePolicy(texts: String) -> Bool {
+    print("0")
+    // String -> Array
+    let text = String(texts.last!)
+    let arr = Array(text)
+    // 정규식 pattern. 한글, 영어, 숫자, 밑줄(_)만 있어야함
+    let pattern = "[ㄱ-ㅎㅏ-ㅣ]"
+    if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+        var index = 0
+        while index < arr.count { // string 내 각 문자 하나하나 마다 정규식 체크 후 충족하지 못한것은 제거.
+            let results = regex.matches(in: String(arr[index]), options: [], range: NSRange(location: 0, length: 1))
+            if results.count == 0 {
+                return false
+            } else {
+                index += 1
+            }
+        }
     }
-    
-    @objc func buttonPressed() {
-        print(self.textFiled.text ?? "")
-        
-        
-        
-    }
-    
-    func presentAlert(title: String, message: String, actionTitle: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: actionTitle, style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
+    return true
 }
 
-extension TestViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("!!!!!!")
+private func checkSpecialPolicy(text: String.Element) -> Bool {
+    print("0")
+    // String -> Array
+    let text = String(text)
+    let arr = Array(text)
+    // 정규식 pattern. 한글, 영어, 숫자, 밑줄(_)만 있어야함
+    let pattern = "^[_]$"
+    if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+        var index = 0
+        while index < arr.count { // string 내 각 문자 하나하나 마다 정규식 체크 후 충족하지 못한것은 제거.
+            let results = regex.matches(in: String(arr[index]), options: [], range: NSRange(location: 0, length: 1))
+            if results.count == 0 {
+                return false
+            } else {
+                index += 1
+            }
+        }
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("??????")
+    return true
+}
+
+func postPositionText(_ name: String) -> Bool {
+    print("1")
+    guard let text = name.last else { return false }
+    if checkSpecialPolicy(text: text) {
+        return false
     }
+    print("z\(text)z")
+    let val = UnicodeScalar(String(text))?.value
+    print("2")
+    guard let value = val else { return false }
+    print("3")
+    let x = (value - 0xac00) / 28 / 21
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("return")
-        
+    let y = ((value - 0xac00) / 28) % 21
+    
+    let z = (value - 0xac00) % 28
+    print("4")
+    if z == 0 {
+        //받침이 없음
         return true
+    } else {
+        return false
     }
 }
-let viewController = TestViewController()
 
-PlaygroundPage.current.needsIndefiniteExecution = true
-PlaygroundPage.current.liveView = viewController
 
-/**
- # view update 확인하기
- */
-
+if checkNamePolicy(texts: str) {
+    //완전한 문자가 아님
+    print(str)
+} else {
+    let strPlus = postPositionText(str) ? "계속" : "멈춰"
+    print(strPlus)
+}
 

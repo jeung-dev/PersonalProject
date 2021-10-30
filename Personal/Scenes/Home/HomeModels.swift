@@ -13,5 +13,7 @@ struct Home {
         case RestfulApi = "get restfulAPI DATA"
         case PopupVC = "Custom PopupViewController"
         case KakaoMap = "Kakao Map"
+        case NoticeBoard = "Notice Borad"
+        case Localization = "Lacalization"
     }
 }

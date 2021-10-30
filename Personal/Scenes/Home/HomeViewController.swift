@@ -19,8 +19,10 @@ class HomeViewController: BaseViewController, HomeDisplayLogic {
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     let category: [Home.Category] = [Home.Category.KakaoLogin,
                                      Home.Category.KakaoMap,
-                              Home.Category.RestfulApi,
-                              Home.Category.PopupVC]
+                                     Home.Category.RestfulApi,
+                                     Home.Category.PopupVC,
+                                     Home.Category.NoticeBoard,
+                                     Home.Category.Localization]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +47,14 @@ class HomeViewController: BaseViewController, HomeDisplayLogic {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        router!.routeToSub(segue: segue)
+        if segue.identifier == "toNoticeBoard" {
+            
+        } else if segue.identifier == "toSub" {
+            router!.routeToSub(segue: segue)
+        } else {
+            
+        }
+        
     }
 
 }
@@ -63,9 +72,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
         //서브뷰에 해당 카테고리를 넘겨주기 위한 작업 (추후 router에서 쓰임)
         let category = category[indexPath.row]
-        interactor?.setCategory(category)
+        
+        //다음 화면이 무엇인지에 따라 다른 작업
+        switch category {
+            
+        case .NoticeBoard:
+            
+            performSegue(withIdentifier: "toNoticeBoard", sender: nil)
+            break
+        case .Localization:
+            performSegue(withIdentifier: "Localization", sender: nil)
+            break
+            
+        default:    //SubViewController
+            
+            //카테고리 이름을 넘겨서 SubViewController에서 화면을 분기함
+            interactor?.setCategory(category)
+            performSegue(withIdentifier: "toSub", sender: nil)
+            
+            
+            break
+            
+        }
         
         return indexPath
     }
