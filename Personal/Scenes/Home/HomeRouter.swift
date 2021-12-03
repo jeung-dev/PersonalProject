@@ -13,6 +13,7 @@ import UIKit
 @objc protocol HomeRoutingLogic {
     func routeToSub(segue: UIStoryboardSegue?)
     func routeToNoticeBoard(segue: UIStoryboardSegue?)
+    func routeToUseKeyChain(segue: UIStoryboardSegue?)
 }
 
 /**
@@ -70,20 +71,47 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
         }
     }
     
+    func routeToUseKeyChain(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            guard let destinationVC = segue.destination as? UseKeyChainViewController else {
+                Logger.d("UseKeyChainViewController nil...")
+                return
+            }
+            guard var destinationDS = destinationVC.router?.dataStore else {
+                Logger.d("UseKeyChainDataStore nil...")
+                return
+            }
+            passingDataToUseKeyChain(source: dataStore!, destination: &destinationDS)
+        } else {
+            let index = viewController!.navigationController!.viewControllers.count - 2
+            guard var destinationVC = viewController?.navigationController?.viewControllers[index] as? UseKeyChainViewController else {
+                Logger.e("UseKeyChainViewController nil...")
+                return
+            }
+            navigateToUseKeyChain(source: viewController!, destination: destinationVC)
+        }
+    }
+    
+    //MARK: - Navigate Or Present
     private func navigateToSub(source: HomeViewController, destination: SubViewController) {
         source.navigationController?.popViewController(animated: true)
     }
+    private func navigateToNoticeBoard(source: HomeViewController, destination: NoticeBoardViewController) {
+        source.navigationController?.popViewController(animated: true)
+    }
+    private func navigateToUseKeyChain(source: HomeViewController, destination: UseKeyChainViewController) {
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
     
+    //MARK: - Passing Data
     private func passingDataToSub(source: HomeDataStore, destination: inout SubDataStore) {
         //data set
         destination.category = source.category
     }
-    
     private func passingDataToNoticeBoard(source: HomeDataStore, destination: inout NoticeBoardDataStore) {
+    }
+    private func passingDataToUseKeyChain(source: HomeDataStore, destination: inout UseKeyChainDataStore) {
         
     }
     
-    private func navigateToNoticeBoard(source: HomeViewController, destination: NoticeBoardViewController) {
-        source.navigationController?.popViewController(animated: true)
-    }
 }

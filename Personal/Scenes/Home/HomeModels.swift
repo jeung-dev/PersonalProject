@@ -15,5 +15,6 @@ struct Home {
         case KakaoMap = "Kakao Map"
         case NoticeBoard = "Notice Borad"
         case Localization = "Lacalization"
+        case UseKeyChain = "Use KeyChain"
     }
 }

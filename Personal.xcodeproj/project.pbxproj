@@ -107,6 +107,12 @@
 		8CFAC68E270F3DE2007CA711 /* DividedInCovid19.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAC68D270F3DE2007CA711 /* DividedInCovid19.swift */; };
 		8CFAC690270F3E11007CA711 /* DividedInKakaoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAC68F270F3E11007CA711 /* DividedInKakaoLogin.swift */; };
 		B654A05F459E69509A70A6C3 /* Pods_Personal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41E71E1F13DBF54664DB6DD /* Pods_Personal.framework */; };
+		DDDCA5272759F84800EB515C /* UseKeyChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCA5262759F84800EB515C /* UseKeyChainViewController.swift */; };
+		DDDCA5292759F85300EB515C /* UseKeyChainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCA5282759F85300EB515C /* UseKeyChainInteractor.swift */; };
+		DDDCA52B2759FE4500EB515C /* UseKeyChainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCA52A2759FE4500EB515C /* UseKeyChainPresenter.swift */; };
+		DDDCA52D2759FE6E00EB515C /* UseKeyChainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCA52C2759FE6E00EB515C /* UseKeyChainModels.swift */; };
+		DDDCA52F2759FE7600EB515C /* UseKeyChainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCA52E2759FE7600EB515C /* UseKeyChainWorker.swift */; };
+		DDDCA5312759FE8000EB515C /* UseKeyChainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDCA5302759FE8000EB515C /* UseKeyChainRouter.swift */; };
 		F8DF150B16282690BB9B5F45 /* Pods_PersonalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -254,6 +260,13 @@
 		AFC9514113CDE319F57F4CEB /* Pods-Personal-PersonalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal-PersonalUITests.release.xcconfig"; path = "Target Support Files/Pods-Personal-PersonalUITests/Pods-Personal-PersonalUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D8D9362BE4D8BDE74B874CC5 /* Pods-Personal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal.debug.xcconfig"; path = "Target Support Files/Pods-Personal/Pods-Personal.debug.xcconfig"; sourceTree = "<group>"; };
 		DB630CAEA038775CCB5D6A68 /* Pods-PersonalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonalTests.release.xcconfig"; path = "Target Support Files/Pods-PersonalTests/Pods-PersonalTests.release.xcconfig"; sourceTree = "<group>"; };
+		DDDCA5262759F84800EB515C /* UseKeyChainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseKeyChainViewController.swift; sourceTree = "<group>"; };
+		DDDCA5282759F85300EB515C /* UseKeyChainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseKeyChainInteractor.swift; sourceTree = "<group>"; };
+		DDDCA52A2759FE4500EB515C /* UseKeyChainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseKeyChainPresenter.swift; sourceTree = "<group>"; };
+		DDDCA52C2759FE6E00EB515C /* UseKeyChainModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseKeyChainModels.swift; sourceTree = "<group>"; };
+		DDDCA52E2759FE7600EB515C /* UseKeyChainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseKeyChainWorker.swift; sourceTree = "<group>"; };
+		DDDCA5302759FE8000EB515C /* UseKeyChainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseKeyChainRouter.swift; sourceTree = "<group>"; };
+		DDDCA532275A0FF100EB515C /* Personal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Personal.entitlements; sourceTree = "<group>"; };
 		F41E71E1F13DBF54664DB6DD /* Pods_Personal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Personal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4DA7BFC2AED88A8A06BD4EA /* Pods-Personal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personal.release.xcconfig"; path = "Target Support Files/Pods-Personal/Pods-Personal.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -348,6 +361,7 @@
 				8C711BF2270B417A00DAB6EB /* Popup */,
 				8C9BD7092710B29000BDBFCF /* NoticeBoard */,
 				8C347C66272DAEFC00F0DB14 /* Localization */,
+				DDDCA5252759F83000EB515C /* UseKeyChain */,
 				8C4CC9692704025000D4E4EB /* Views */,
 			);
 			path = Scenes;
@@ -516,6 +530,7 @@
 		8CBA62D326FC8D6C00EFD030 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				DDDCA532275A0FF100EB515C /* Personal.entitlements */,
 				8C9BD7082710AA5C00BDBFCF /* SupportingFiles */,
 				8C4CC97027040FBD00D4E4EB /* Models */,
 				8CE654FE270E1BE0002A838C /* Services */,
@@ -612,6 +627,19 @@
 				9A419BC1FEECE110E948B92F /* Pods_PersonalTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DDDCA5252759F83000EB515C /* UseKeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				DDDCA5262759F84800EB515C /* UseKeyChainViewController.swift */,
+				DDDCA5282759F85300EB515C /* UseKeyChainInteractor.swift */,
+				DDDCA52A2759FE4500EB515C /* UseKeyChainPresenter.swift */,
+				DDDCA52C2759FE6E00EB515C /* UseKeyChainModels.swift */,
+				DDDCA52E2759FE7600EB515C /* UseKeyChainWorker.swift */,
+				DDDCA5302759FE8000EB515C /* UseKeyChainRouter.swift */,
+			);
+			path = UseKeyChain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -886,12 +914,15 @@
 			files = (
 				8C711BF6270B41BD00DAB6EB /* PopupPresenter.swift in Sources */,
 				8CAA3082271155E500F2EAB8 /* NoticeBoardPresenter.swift in Sources */,
+				DDDCA5272759F84800EB515C /* UseKeyChainViewController.swift in Sources */,
 				8CFAC68E270F3DE2007CA711 /* DividedInCovid19.swift in Sources */,
 				8C711BF8270B41C800DAB6EB /* PopupRouter.swift in Sources */,
 				8CBA62D926FC8D6C00EFD030 /* HomeViewController.swift in Sources */,
 				8C6E79222700DFE7002A01C2 /* IntroViewController.swift in Sources */,
+				DDDCA52D2759FE6E00EB515C /* UseKeyChainModels.swift in Sources */,
 				8C347C68272DAF2900F0DB14 /* LocalizationViewController.swift in Sources */,
 				8CE65500270E1BF6002A838C /* NetworkAPI.swift in Sources */,
+				DDDCA5312759FE8000EB515C /* UseKeyChainRouter.swift in Sources */,
 				8C6E791B2700C636002A01C2 /* SubInteractor.swift in Sources */,
 				8CBA62D526FC8D6C00EFD030 /* AppDelegate.swift in Sources */,
 				8C711BFA270B41D500DAB6EB /* PopupModels.swift in Sources */,
@@ -899,6 +930,7 @@
 				8C6E79142700C179002A01C2 /* HomeRouter.swift in Sources */,
 				8CE6550D270E2126002A838C /* FontExtension.swift in Sources */,
 				8CAA3080271155D200F2EAB8 /* NoticeBoardInteractor.swift in Sources */,
+				DDDCA5292759F85300EB515C /* UseKeyChainInteractor.swift in Sources */,
 				8CAA3084271155F400F2EAB8 /* NoticeBoardRouter.swift in Sources */,
 				8CFAC690270F3E11007CA711 /* DividedInKakaoLogin.swift in Sources */,
 				8CE65505270E1C6D002A838C /* SubWorker.swift in Sources */,
@@ -914,6 +946,7 @@
 				8C4CC9792705547800D4E4EB /* SkeletonDisplayable.swift in Sources */,
 				8CD96B2C2701BBA8000E978C /* Logger.swift in Sources */,
 				8C6E79162700C228002A01C2 /* BaseViewController.swift in Sources */,
+				DDDCA52F2759FE7600EB515C /* UseKeyChainWorker.swift in Sources */,
 				8C6E79282700E049002A01C2 /* IntroRouter.swift in Sources */,
 				8C9BD7002710673600BDBFCF /* DividedInKakaoMap.swift in Sources */,
 				8CA67D922703913F00D7C684 /* SceneDelegate.swift in Sources */,
@@ -938,6 +971,7 @@
 				8CE6550F270E2693002A838C /* StringExtension.swift in Sources */,
 				8C6E790E2700C13C002A01C2 /* HomeInteractor.swift in Sources */,
 				8C6E79242700E02D002A01C2 /* IntroInteractor.swift in Sources */,
+				DDDCA52B2759FE4500EB515C /* UseKeyChainPresenter.swift in Sources */,
 				8C711BF4270B41AB00DAB6EB /* PopupInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1132,6 +1166,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_ENTITLEMENTS = Personal/Personal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N82ZFP7PC6;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1146,7 +1181,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.naver.knockotd999.Personal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/me/PersonalProject/Personal/SupportingFiles/Personal-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/app/PersonalProject/Personal/SupportingFiles/Personal-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1159,6 +1194,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_ENTITLEMENTS = Personal/Personal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N82ZFP7PC6;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1173,7 +1209,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.naver.knockotd999.Personal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/me/PersonalProject/Personal/SupportingFiles/Personal-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/app/PersonalProject/Personal/SupportingFiles/Personal-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

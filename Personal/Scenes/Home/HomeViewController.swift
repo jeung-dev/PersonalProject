@@ -22,7 +22,8 @@ class HomeViewController: BaseViewController, HomeDisplayLogic {
                                      Home.Category.RestfulApi,
                                      Home.Category.PopupVC,
                                      Home.Category.NoticeBoard,
-                                     Home.Category.Localization]
+                                     Home.Category.Localization,
+                                     Home.Category.UseKeyChain]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +52,8 @@ class HomeViewController: BaseViewController, HomeDisplayLogic {
             
         } else if segue.identifier == "toSub" {
             router!.routeToSub(segue: segue)
-        } else {
-            
+        } else if segue.identifier == "toUseKeyChain"{
+            router
         }
         
     }
@@ -86,6 +87,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case .Localization:
             performSegue(withIdentifier: "Localization", sender: nil)
             break
+        case .UseKeyChain:
+            performSegue(withIdentifier: "toUseKeyChain", sender: nil)
             
         default:    //SubViewController
             

@@ -246,6 +246,8 @@ extension SubViewController {
             
         case .Localization:
             break
+        case .UseKeyChain:
+            break
         }
     }
     

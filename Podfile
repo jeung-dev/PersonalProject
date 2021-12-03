@@ -11,6 +11,7 @@ target 'Personal' do
   pod 'AlamofireImage', '~> 4.1'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'KakaoSDK'
+  pod 'KeychainAccess' 
 
   target 'PersonalTests' do
     inherit! :search_paths
